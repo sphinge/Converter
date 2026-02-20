@@ -1,0 +1,71 @@
+{
+  "asortment": "Rollo DF",
+  "key_map": {
+    "MODEL": {
+      "source": "MODEL",
+      "transform": "copy"
+    },
+    "OKMOD": {
+      "source": "O_MODELL",
+      "transform": "copy"
+    },
+    "OKTYP": {
+      "source": "O_TYP",
+      "transform": "copy"
+    },
+    "KOLOR": {
+      "source": "O_STOFFAUSWAHL",
+      "transform": "copy"
+    },
+    "B": {
+      "source": "WIDTH",
+      "transform": "divide10"
+    },
+    "L": {
+      "source": "HEIGHT",
+      "transform": "divide10"
+    },
+    "UCH": {
+      "source": "O_MODELL",
+      "transform": "lookup"
+    },
+    "KOLOR_ZAM": {
+      "source": "O_STOFFAUSWAHL",
+      "transform": "copy"
+    },
+    "KRNAW": {
+      "source": "O_MODELL",
+      "transform": "lookup"
+    },
+    "MT": {
+      "source": "O_MODELL",
+      "transform": "lookup"
+    }
+  },
+  "value_map": {
+    "UCH": {
+      "": "DF"
+    },
+    "KRNAW": {
+      "": "ST",
+      "VL-HOLZ": "ST",
+      "GPU": "ST",
+      "WDF": "ST",
+      "GGU": "ST",
+      "GPL": "ST",
+      "GGL": "ST",
+      "GIL": "ST",
+      "VU": "ST",
+      "GTL": "ST",
+      "PTP": "ST",
+      "GTU": "ST"
+    },
+    "MT": {
+      "": "c2021_MLD125"
+    }
+  },
+  "constants": {
+    "WYM": "C",
+    "MONT": "-"
+  }
+}

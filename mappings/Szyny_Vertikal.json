@@ -1,0 +1,140 @@
+{
+  "asortment": "Szyny Vertikal",
+  "key_map": {
+    "TYP": {
+      "source": "SLATS_WIDTH",
+      "transform": "lookup"
+    },
+    "B": {
+      "source": "SZEROKOŚĆ (CM)",
+      "transform": "copy"
+    },
+    "PAC": {
+      "source": "SYSTEM_PACKAGESIDE",
+      "transform": "copy"
+    },
+    "BLAM": {
+      "source": "SYSTEM_SYSTEMHEYTENS",
+      "transform": "lookup"
+    },
+    "TUBA": {
+      "source": "SRCID",
+      "transform": "lookup"
+    },
+    "GAT": {
+      "source": "SZEROKOŚĆ (CM)",
+      "transform": "lookup"
+    },
+    "MODEL": {
+      "source": "SZEROKOŚĆ (CM)",
+      "transform": "lookup"
+    },
+    "SYST_KOLOR": {
+      "source": "FINITION_FINITIONARTICLE",
+      "transform": "lookup"
+    },
+    "CS": {
+      "source": "SZEROKOŚĆ (CM)",
+      "transform": "lookup"
+    },
+    "LSTER": {
+      "source": "SZEROKOŚĆ (CM)",
+      "transform": "copy"
+    },
+    "PROT": {
+      "source": "SLATS_OVERLAP",
+      "transform": "lookup"
+    },
+    "IPAN": {
+      "source": "ILOŚĆ PASKÓW",
+      "transform": "copy"
+    }
+  },
+  "value_map": {
+    "TYP": {
+      "150.0": "2",
+      "194.0": "1",
+      "209.5": "2",
+      "305.0": "3",
+      "": "1",
+      "260.0": "1",
+      "157.0": "1",
+      "190.0": "3"
+    },
+    "BLAM": {
+      "AG/STANDARD/BVSMART127": "127",
+      "": "89",
+      "AG/STANDARD/BVSMART89": "89"
+    },
+    "TUBA": {
+      "HEYTENS": "T",
+      "": "NE"
+    },
+    "GAT": {
+      "": "ST",
+      "260": "ST",
+      "265": "ST",
+      "203": "ST",
+      "251": "ST",
+      "151": "ST",
+      "46": "ST",
+      "75": "ST",
+      "53": "ST",
+      "118": "ST",
+      "317": "ST",
+      "199.5": "Slope",
+      "200": "Slope",
+      "171.5": "Slope",
+      "286": "ST"
+    },
+    "MODEL": {
+      "": "00",
+      "260": "Tylko szyna",
+      "265": "Tylko szyna",
+      "203": "Tylko szyna",
+      "251": "Tylko szyna",
+      "151": "Tylko szyna",
+      "46": "Tylko szyna",
+      "75": "Tylko szyna",
+      "53": "Tylko szyna",
+      "118": "Tylko szyna",
+      "317": "Tylko szyna",
+      "199.5": "Tylko szyna trapez",
+      "200": "Tylko szyna trapez",
+      "171.5": "Tylko szyna trapez",
+      "286": "Tylko szyna"
+    },
+    "SYST_KOLOR": {
+      "AG/RAILNOIR/BVSMART": "1858",
+      "AG/RAILBLANC/BVSMART": "0204",
+      "AG/RAILALU/BVSMART": "7010",
+      "": "0204"
+    },
+    "CS": {
+      "": "T",
+      "260": "T",
+      "265": "T",
+      "203": "N",
+      "251": "N",
+      "151": "N",
+      "46": "N",
+      "75": "N",
+      "53": "N",
+      "118": "N",
+      "317": "T",
+      "199.5": "N",
+      "200": "N",
+      "171.5": "T",
+      "286": "T"
+    },
+    "PROT": {
+      "D": "D",
+      "G": "C",
+      "": "Nie"
+    }
+  },
+  "constants": {
+    "SYS": "DM",
+    "EL": "-"
+  }
+}

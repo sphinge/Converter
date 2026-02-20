@@ -1,0 +1,205 @@
+{
+  "asortment": "Żaluzje 35",
+  "key_map": {
+    "TYP": {
+      "source": "SYSTEM_CONTROLLENGHT",
+      "transform": "lookup"
+    },
+    "KOLOR": {
+      "source": "SLATS_SLATSARTICLE1HKLREF1",
+      "transform": "copy"
+    },
+    "GAT": {
+      "source": "SYSTEM_CONTROLLENGHT",
+      "transform": "lookup"
+    },
+    "B": {
+      "source": "B",
+      "transform": "copy"
+    },
+    "L": {
+      "source": "H(L)",
+      "transform": "copy"
+    },
+    "ST": {
+      "source": "STSTER",
+      "transform": "copy"
+    },
+    "PROW": {
+      "source": "SYSTEM_CONTROLLENGHT",
+      "transform": "lookup"
+    },
+    "LINK": {
+      "source": "SYSTEM_CONTROLLENGHT",
+      "transform": "lookup"
+    },
+    "LPOK": {
+      "source": "LSTER",
+      "transform": "copy"
+    },
+    "UCH": {
+      "source": "SYSTEM_CONTROLLENGHT",
+      "transform": "lookup"
+    },
+    "Z": {
+      "source": "SYSTEM_CONTROLLENGHT",
+      "transform": "lookup"
+    },
+    "WYMD": {
+      "source": "SYSTEM_CONTROLLENGHT",
+      "transform": "lookup"
+    },
+    "EL": {
+      "source": "SYSTEM_CONTROLLENGHT",
+      "transform": "lookup"
+    },
+    "MONT_H": {
+      "source": "SYSTEM_CONTROLLENGHT",
+      "transform": "lookup"
+    },
+    "CS": {
+      "source": "CS",
+      "transform": "lookup"
+    },
+    "TEKS_KOLOR": {
+      "source": "SYSTEM_CONTROLLENGHT",
+      "transform": "lookup"
+    },
+    "KOLOR_ZAM": {
+      "source": "KOLOR",
+      "transform": "copy"
+    },
+    "SYST_KOLOR": {
+      "source": "B",
+      "transform": "lookup"
+    }
+  },
+  "value_map": {
+    "TYP": {
+      "0.9": "I35",
+      "1": "I35",
+      "1.1": "I35",
+      "1.3": "I35",
+      "1.5": "I35",
+      "": "U35",
+      "1.2": "I35",
+      "1.8": "I35",
+      "1.6": "I35",
+      "0.8": "I35",
+      "0.6": "I35",
+      "0.4": "I35"
+    },
+    "GAT": {
+      "": "Luxan"
+    },
+    "PROW": {
+      "1.2": "zew",
+      "": "odd 2 schn",
+      "0.8": "zew",
+      "0.6": "zew",
+      "0.4": "zew"
+    },
+    "LINK": {
+      "1.2": "2ln",
+      "": "2ln",
+      "0.8": "2ln",
+      "0.6": "2ln",
+      "0.4": "2ln"
+    },
+    "UCH": {
+      "0.9": "3",
+      "1": "3",
+      "1.1": "3",
+      "1.3": "3",
+      "1.5": "3",
+      "": "JMS0125",
+      "1.2": "3",
+      "1.8": "3",
+      "1.6": "3",
+      "0.8": "3",
+      "0.6": "3",
+      "0.4": "3"
+    },
+    "Z": {
+      "0.9": "T",
+      "1": "T",
+      "1.1": "T",
+      "1.3": "T",
+      "1.5": "T",
+      "": "NE",
+      "1.2": "T",
+      "1.8": "T",
+      "1.6": "T",
+      "0.8": "T",
+      "0.6": "T",
+      "0.4": "T"
+    },
+    "WYMD": {
+      "0.9": "0",
+      "1": "0",
+      "1.1": "0",
+      "1.3": "0",
+      "1.5": "0",
+      "": "0",
+      "1.2": "0",
+      "1.8": "0",
+      "1.6": "0",
+      "0.8": "0",
+      "0.6": "0",
+      "0.4": "0"
+    },
+    "EL": {
+      "": "CM10-QC"
+    },
+    "MONT_H": {
+      "0.9": "0",
+      "1": "0",
+      "1.1": "0",
+      "1.3": "0",
+      "1.5": "0",
+      "": "0",
+      "1.2": "0",
+      "1.8": "0",
+      "1.6": "0",
+      "0.8": "0",
+      "0.6": "0",
+      "0.4": "0"
+    },
+    "CS": {
+      "CHILD SAFETY: TAK": "T",
+      "CHILD SAFETY: NIE": "N"
+    },
+    "TEKS_KOLOR": {
+      "": "Dra-Nvt"
+    },
+    "SYST_KOLOR": {
+      "123.2": "7055",
+      "112.7": "1861",
+      "195": "1861",
+      "212": "1861",
+      "221.5": "0192",
+      "213": "0192",
+      "139": "7113",
+      "197.9": "7113",
+      "120": "4459",
+      "145": "4459",
+      "192.5": "4459",
+      "56": "4459",
+      "74": "4459",
+      "61.5": "4459",
+      "40.7": "1459",
+      "249": "0204",
+      "222": "0952"
+    }
+  },
+  "constants": {
+    "KOLOR2": "-",
+    "SL": "-",
+    "BQ": "-",
+    "I": "-",
+    "WYPR": "-",
+    "KOLORZAM2": "-",
+    "UCH_BOCZ": "-",
+    "MONT": "-"
+  }
+}

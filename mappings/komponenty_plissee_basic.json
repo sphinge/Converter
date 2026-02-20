@@ -1,0 +1,22 @@
+{
+  "asortment": "komponenty plissee basic",
+  "key_map": {
+    "KOMPONENT": {
+      "source": "BESTELLNR",
+      "transform": "lookup"
+    }
+  },
+  "value_map": {
+    "KOMPONENT": {
+      "EB25-126689": "Gelenkklebeplatte",
+      "EB25-127727": "Gelenkklebeplatte-3 zestawy"
+    }
+  },
+  "constants": {
+    "KOD": "3196371701",
+    "KOMPONENTDE": "Gelenkklebeplatte",
+    "T": "GLS",
+    "CENAN": "0",
+    "CENAS": "0"
+  }
+}

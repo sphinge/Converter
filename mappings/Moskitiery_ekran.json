@@ -1,0 +1,49 @@
+{
+  "asortment": "Moskitiery ekran",
+  "key_map": {
+    "TYP": {
+      "source": "B",
+      "transform": "lookup"
+    },
+    "KOLOR": {
+      "source": "B",
+      "transform": "lookup"
+    },
+    "B": {
+      "source": "B",
+      "transform": "copy"
+    },
+    "L": {
+      "source": "B",
+      "transform": "lookup"
+    }
+  },
+  "value_map": {
+    "TYP": {
+      "75.5": "1",
+      "88.2": "1",
+      "90.5": "1PA",
+      "91.2": "1"
+    },
+    "KOLOR": {
+      "75.5": "0204",
+      "88.2": "0204",
+      "90.5": "4950",
+      "91.2": "7016"
+    },
+    "L": {
+      "75.5": "94",
+      "88.2": "110",
+      "90.5": "146.5",
+      "91.2": "164"
+    }
+  },
+  "constants": {
+    "F_L": "L",
+    "WSPOR": "-",
+    "UCHWYT": "30",
+    "UCHPCV": "-",
+    "TUBA": "T",
+    "MONT": "-"
+  }
+}

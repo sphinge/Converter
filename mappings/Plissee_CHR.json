@@ -1,0 +1,112 @@
+{
+  "asortment": "Plissee CHR",
+  "key_map": {
+    "SYS": {
+      "source": "MODEL",
+      "transform": "lookup"
+    },
+    "MODEL": {
+      "source": "MODEL",
+      "transform": "copy"
+    },
+    "KOLOR": {
+      "source": "KOLOR TKANINY",
+      "transform": "copy"
+    },
+    "KOLORZAM": {
+      "source": "KOLOR TKANINY",
+      "transform": "copy"
+    },
+    "KOLOR2": {
+      "source": "SYSTEM_CONTROLLENGHT",
+      "transform": "lookup"
+    },
+    "KOLORZAM2": {
+      "source": "SYSTEM_CONTROLLENGHT",
+      "transform": "lookup"
+    },
+    "B": {
+      "source": "SZEROKOŚĆ DÓŁ",
+      "transform": "copy"
+    },
+    "H": {
+      "source": "WYSOKOŚĆ LEWA",
+      "transform": "copy"
+    },
+    "STSTER": {
+      "source": "SYSTEM_CONTROLSIDE",
+      "transform": "copy"
+    },
+    "LPOK": {
+      "source": "SYSTEM_CONTROLLENGHT",
+      "transform": "divide10"
+    },
+    "DODATKI": {
+      "source": "MONTAŻ",
+      "transform": "lookup"
+    },
+    "EL": {
+      "source": "OPTION_EL",
+      "transform": "copy"
+    }
+  },
+  "value_map": {
+    "SYS": {
+      "": "CHR",
+      "AU20": "CHR",
+      "AL20": "CHR",
+      "AL10": "CHR",
+      "AB20": "CHR",
+      "AB10": "CHR",
+      "AE20": "TDBU",
+      "AU30": "CHR",
+      "AU10": "CHR",
+      "AE10": "CHR"
+    },
+    "KOLOR2": {
+      "": "7470"
+    },
+    "KOLORZAM2": {
+      "1387": "01",
+      "1000": "01",
+      "1500": "01",
+      "1100": "01",
+      "": "| 7470",
+      "0": "01",
+      "1605": "01",
+      "833": "01",
+      "1567": "01",
+      "800": "01",
+      "940": "01",
+      "1133": "01",
+      "1187": "01",
+      "1095": "01",
+      "1096": "01",
+      "981": "01",
+      "976": "01",
+      "965": "01",
+      "1237": "01",
+      "1227": "01",
+      "873": "01",
+      "1033": "01",
+      "520": "01",
+      "1050": "01",
+      "1093": "01",
+      "1200": "01",
+      "1733": "01",
+      "707": "01",
+      "860": "01"
+    },
+    "DODATKI": {
+      "SUFITOWY": "- | Montaż: Sufitowy",
+      "NA ŚCIANIE": "- | Montaż: Na ścianie"
+    }
+  },
+  "constants": {
+    "T": "NE",
+    "PROW": "-",
+    "MT": "-",
+    "UCHD": "-",
+    "MONT_H": "0"
+  }
+}

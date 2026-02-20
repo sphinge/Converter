@@ -1,0 +1,44 @@
+{
+  "asortment": "Rollo",
+  "key_map": {
+    "SREDRU": {
+      "source": "SYSTEM_TUBEDIAMETER",
+      "transform": "copy"
+    },
+    "KOLOR": {
+      "source": "FABRIC_FABRICARTICLEHKLREF",
+      "transform": "copy"
+    },
+    "B": {
+      "source": "DELIVERYADDRESS_ZIP",
+      "transform": "divide10"
+    },
+    "L": {
+      "source": "DELIVERYADDRESS_ZIP",
+      "transform": "divide10"
+    },
+    "STER": {
+      "source": "SYSTEM_MANEUVERSIDE",
+      "transform": "copy"
+    },
+    "LPOK": {
+      "source": "SYSTEM_SIDEBYSIDEBLINDS",
+      "transform": "copy"
+    },
+    "EL": {
+      "source": "SYSTEM_VARIANTCODEEP",
+      "transform": "copy"
+    }
+  },
+  "value_map": {},
+  "constants": {
+    "WYM": "C",
+    "FAL": "-",
+    "TUBA": "T",
+    "KOLOR_ZAM": "-",
+    "MONT_H": "0",
+    "CS": "-",
+    "UCH_BOCZ": "-",
+    "MONT": "-"
+  }
+}

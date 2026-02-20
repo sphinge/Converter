@@ -1,0 +1,39 @@
+{
+  "asortment": "_gpt_ZASŁONY",
+  "key_map": {
+    "TYP": {
+      "source": "ASORTMENT",
+      "transform": "copy"
+    },
+    "KOLOR": {
+      "source": "KOLOR",
+      "transform": "copy"
+    },
+    "KOLOR_ZAM": {
+      "source": "KOLOR",
+      "transform": "copy"
+    },
+    "SKOS_TYP": {
+      "source": "HACZYK",
+      "transform": "lookup"
+    },
+    "B": {
+      "source": "SZEROKOSC",
+      "transform": "divide10"
+    },
+    "H": {
+      "source": "WYSOKOSC",
+      "transform": "divide10"
+    },
+    "H_2": {
+      "source": "HACZYK",
+      "transform": "lookup"
+    },
+    "STER_L": {
+      "source": "MARSZCZENIE",
+      "transform": "copy"
+    }
+  },
+  "value_map": {},
+  "constants": {}
+}

@@ -1,0 +1,64 @@
+{
+  "asortment": "Lamele Vertikal",
+  "key_map": {
+    "KOR": {
+      "source": "SLATS_INSTALLATIONHEIGHT",
+      "transform": "divide10"
+    },
+    "KOLOR": {
+      "source": "FARBE STOFF",
+      "transform": "copy"
+    },
+    "L": {
+      "source": "SLATS_HEIGHT",
+      "transform": "copy"
+    },
+    "BLAM": {
+      "source": "SLATS_BLAM",
+      "transform": "copy"
+    },
+    "TUBA": {
+      "source": "FARBE STOFF",
+      "transform": "lookup"
+    },
+    "KORKOL": {
+      "source": "SRCID",
+      "transform": "lookup"
+    },
+    "KOLOR_ZAM": {
+      "source": "DELIVERYADDRESS_ADDRESS",
+      "transform": "lookup"
+    }
+  },
+  "value_map": {
+    "TUBA": {
+      "": "T",
+      "2210": "DPD",
+      "B0791": "DPD",
+      "B0767": "DPD",
+      "2110": "DPD",
+      "3142": "DPD",
+      "B0770": "T"
+    },
+    "KORKOL": {
+      "HEYTENS": "White",
+      "": "white"
+    },
+    "KOLOR_ZAM": {
+      "AVENUE SAINT EXUPÉRY BATIMENT 5": "mt/fidji03ecru/l89",
+      "HOTELSTRAAT 10 A": "mt/maltatrnoir/l89",
+      "ROUTE DARLON 319": "mt/fidji05chinenoir/l89",
+      "7 / 12 RUE PAUL LANGEVIN": "mt/iki05gris/l127",
+      "7 RUE DE SOULTZ": "mt/fidji03blanc/l127",
+      "": "0174",
+      "153 RUE DU COLONEL MULLER": "mt/iki05blanc/l89",
+      "315 RUE DU BOIS DORLY": "mt/iki05blanc/l127",
+      "BD.DE FROIDMONT 29": "mt/barranicamel/l127",
+      "ANTWERPSESTEENWEG 68/2": "mt/borneo05beige/l127"
+    }
+  },
+  "constants": {
+    "KOD": "-",
+    "WYMIAR": "L"
+  }
+}

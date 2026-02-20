@@ -1,0 +1,94 @@
+{
+  "asortment": "Plissee EOS",
+  "key_map": {
+    "MODEL": {
+      "source": "MODEL",
+      "transform": "copy"
+    },
+    "KOLOR": {
+      "source": "KOLOR TKANINY",
+      "transform": "copy"
+    },
+    "B": {
+      "source": "SZEROKOŚĆ GÓRA",
+      "transform": "copy"
+    },
+    "H": {
+      "source": "WYSOKOŚĆ LEWA",
+      "transform": "copy"
+    },
+    "STSTER": {
+      "source": "SYSTEM_CONTROLSIDE",
+      "transform": "copy"
+    },
+    "LPOK": {
+      "source": "SYSTEM_CONTROLLENGHT",
+      "transform": "divide10"
+    },
+    "UCH": {
+      "source": "KOLOR RAMKI",
+      "transform": "copy"
+    },
+    "KOLORZAM": {
+      "source": "KOLOR TKANINY",
+      "transform": "copy"
+    },
+    "KOLORZAM2": {
+      "source": "SYSTEM_CONTROLLENGHT",
+      "transform": "lookup"
+    },
+    "PROW": {
+      "source": "SZEROKOŚĆ DÓŁ",
+      "transform": "lookup"
+    },
+    "MT": {
+      "source": "SZEROKOŚĆ DÓŁ",
+      "transform": "lookup"
+    }
+  },
+  "value_map": {
+    "KOLORZAM2": {
+      "1133": "01",
+      "913": "01",
+      "950": "01",
+      "0": "01",
+      "1200": "01",
+      "1100": "01",
+      "1700": "01",
+      "567": "01",
+      "900": "01",
+      "300": "01",
+      "713": "01",
+      "1408": "01",
+      "1000": "01",
+      "580": "01",
+      "813": "01",
+      "1500": "01",
+      "1523": "01",
+      "933": "01",
+      "890": "01",
+      "893": "01"
+    },
+    "PROW": {
+      "77.5": "model DB",
+      "49.3": "model DB",
+      "93.9": "a1",
+      "108.8": "s3-f1"
+    },
+    "MT": {
+      "102": "BSEOS125",
+      "77": "BSEOS125",
+      "64.2": "BSEOS125MG",
+      "87.5": "BSEOS125",
+      "32.6": "BSEOS125MG",
+      "61.3": "BSEOS150"
+    }
+  },
+  "constants": {
+    "SYS": "EOS",
+    "KOLOR2": "-",
+    "T": "NE",
+    "EL": "-",
+    "MONT_H": "0"
+  }
+}

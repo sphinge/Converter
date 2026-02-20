@@ -1,0 +1,105 @@
+{
+  "asortment": "Plissee Cosiflor - Verspand, Freihangend",
+  "key_map": {
+    "TYP": {
+      "source": "STK.",
+      "transform": "copy"
+    },
+    "KOLOR": {
+      "source": "FABRIC_FABRICARTICLEHKLREF1",
+      "transform": "copy"
+    },
+    "KOLORZAM": {
+      "source": "FARBE",
+      "transform": "copy"
+    },
+    "KOLOR2": {
+      "source": "FABRIC_FABRICARTICLEHKLREF2",
+      "transform": "copy"
+    },
+    "B": {
+      "source": "BREITE_CM",
+      "transform": "copy"
+    },
+    "L": {
+      "source": "HOEHE_CM",
+      "transform": "copy"
+    },
+    "BMALA": {
+      "source": "PRICE",
+      "transform": "copy"
+    },
+    "LMALA": {
+      "source": "PRICE",
+      "transform": "copy"
+    },
+    "STER": {
+      "source": "BEDIENUNG",
+      "transform": "copy"
+    },
+    "RODZST": {
+      "source": "GRIFF",
+      "transform": "copy"
+    },
+    "LPOK": {
+      "source": "PRICE",
+      "transform": "copy"
+    },
+    "UCHG": {
+      "source": "UCHWYT GÓRNY",
+      "transform": "copy"
+    },
+    "UCHD": {
+      "source": "HALTER",
+      "transform": "copy"
+    },
+    "EL": {
+      "source": "DELIVERYADDRESS_CITY",
+      "transform": "lookup"
+    },
+    "TUBA": {
+      "source": "SHIPMENT_SUPPLIER_NAME",
+      "transform": "copy"
+    },
+    "KOLORZAM2": {
+      "source": "BEDIENSEITE",
+      "transform": "lookup"
+    },
+    "MT": {
+      "source": "FABRIC_WIDTH",
+      "transform": "lookup"
+    }
+  },
+  "value_map": {
+    "EL": {
+      "NICE": "EP_M07_P25_R02_A00_X00_Y00_Z00",
+      "MARSEILLE LA VALENTINE": "EP_M17_P10_R00_A00_X00_Y00_Z00",
+      "PARIS 14E": "EP_M07_P25_R01_A00_X00_Y00_Z00",
+      "WAVRE": "EP_M07_P25_R02_A00_X00_Y00_Z00",
+      "": "EP_M15_P11_R08_A00_X05_Y00_Z00",
+      "MERKSEM": "EP_M07_P25_R01_A00_X00_Y00_Z00"
+    },
+    "KOLORZAM2": {
+      "OBEN:2254": "2272",
+      "OBEN:2000": "2016",
+      "": "2084"
+    },
+    "MT": {
+      "0.61": "c2021_ML125",
+      "0.45": "c2021_MP125",
+      "0.5": "c2021_ML125",
+      "0.997": "c2021_MP125",
+      "": "c2021_ML125",
+      "0.964": "c2021_MP125",
+      "0.75": "c2021_ML125",
+      "1.17": "c2021_MP125",
+      "1.16": "c2021_MP125",
+      "0.393": "c2021_ML125",
+      "0.854": "c2021_MP125",
+      "0.62": "c2021_ML125"
+    }
+  },
+  "constants": {
+    "MONT_H": "0"
+  }
+}

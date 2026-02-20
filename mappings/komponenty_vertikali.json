@@ -1,0 +1,35 @@
+{
+  "asortment": "komponenty vertikali",
+  "key_map": {
+    "KOD": {
+      "source": "NAZWA KOMPONENTU",
+      "transform": "lookup"
+    },
+    "T": {
+      "source": "NAZWA KOMPONENTU",
+      "transform": "lookup"
+    }
+  },
+  "value_map": {
+    "KOD": {
+      "": "90668000",
+      "LAMELLENHAKEN STANDARD": "92411416",
+      "LAMELLENVERBINDUNG 127 WEISS": "3233228001",
+      "SLOPEHAKEN 68": "91458002",
+      "BESCHWERUNGSPLATTE 89MM STANDA": "3233225001",
+      "HALTER LANGLOCH V2A WEISS": "90576000"
+    },
+    "T": {
+      "": "T",
+      "LAMELLENHAKEN STANDARD": "NE",
+      "LAMELLENVERBINDUNG 127 WEISS": "NE",
+      "SLOPEHAKEN 68": "BUSGLS",
+      "BESCHWERUNGSPLATTE 89MM STANDA": "NE",
+      "HALTER LANGLOCH V2A WEISS": "NE"
+    }
+  },
+  "constants": {
+    "CENAN": "0",
+    "CENAS": "0"
+  }
+}

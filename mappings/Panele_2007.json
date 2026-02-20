@@ -1,0 +1,118 @@
+{
+  "asortment": "Panele 2007",
+  "key_map": {
+    "KOLOR": {
+      "source": "SZYNA",
+      "transform": "lookup"
+    },
+    "B": {
+      "source": "SZYNA",
+      "transform": "lookup"
+    },
+    "L": {
+      "source": "SZYNA",
+      "transform": "lookup"
+    },
+    "BPAN": {
+      "source": "SZYNA",
+      "transform": "lookup"
+    },
+    "TORY": {
+      "source": "SZYNA",
+      "transform": "lookup"
+    },
+    "IPAN": {
+      "source": "SZYNA",
+      "transform": "lookup"
+    },
+    "TYP": {
+      "source": "SZYNA",
+      "transform": "lookup"
+    },
+    "TSTER": {
+      "source": "SZYNA",
+      "transform": "lookup"
+    },
+    "STSTER": {
+      "source": "SZYNA",
+      "transform": "lookup"
+    },
+    "LSTER": {
+      "source": "SZYNA",
+      "transform": "lookup"
+    },
+    "KOLOR_ZAM": {
+      "source": "SZYNA",
+      "transform": "lookup"
+    }
+  },
+  "value_map": {
+    "KOLOR": {
+      "3-TOROWA": "2541",
+      "4-TOROWA": "2813",
+      "2-TOROWA": "2813"
+    },
+    "B": {
+      "3-TOROWA": "424",
+      "4-TOROWA": "271",
+      "2-TOROWA": "75"
+    },
+    "L": {
+      "3-TOROWA": "197.5",
+      "4-TOROWA": "267",
+      "2-TOROWA": "267"
+    },
+    "BPAN": {
+      "3-TOROWA": "90",
+      "4-TOROWA": "48.9",
+      "2-TOROWA": "38.6"
+    },
+    "TORY": {
+      "3-TOROWA": "3",
+      "4-TOROWA": "4",
+      "2-TOROWA": "2"
+    },
+    "IPAN": {
+      "3-TOROWA": "5",
+      "4-TOROWA": "6",
+      "2-TOROWA": "2"
+    },
+    "TYP": {
+      "3-TOROWA": "3C",
+      "4-TOROWA": "4E",
+      "2-TOROWA": "2B"
+    },
+    "TSTER": {
+      "3-TOROWA": "Stang 1000mm",
+      "4-TOROWA": "Sznur",
+      "2-TOROWA": "Sznur"
+    },
+    "STSTER": {
+      "4-TOROWA": "R",
+      "2-TOROWA": "L"
+    },
+    "LSTER": {
+      "3-TOROWA": "100",
+      "4-TOROWA": "178",
+      "2-TOROWA": "178"
+    },
+    "KOLOR_ZAM": {
+      "3-TOROWA": "2541",
+      "4-TOROWA": "2813",
+      "2-TOROWA": "2813"
+    }
+  },
+  "constants": {
+    "BZAK": "0",
+    "UCH": "decke",
+    "PAK": "NE",
+    "GAT": "Absolut",
+    "SYST_KOLOR": "W",
+    "OBC": "---",
+    "EL": "-",
+    "DODATKI": "-",
+    "MONT_H": "0",
+    "CS": "-",
+    "UCH_BOCZ": "-"
+  }
+}

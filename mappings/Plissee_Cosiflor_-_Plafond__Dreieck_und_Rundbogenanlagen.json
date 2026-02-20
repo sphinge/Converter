@@ -1,0 +1,119 @@
+{
+  "asortment": "Plissee Cosiflor - Plafond, Dreieck und Rundbogenanlagen",
+  "key_map": {
+    "RODZ": {
+      "source": "SYSTEM_SYSTEMARTICLEHEYTENS",
+      "transform": "lookup"
+    },
+    "TYP": {
+      "source": "SYSTEM_SYSTEM",
+      "transform": "lookup"
+    },
+    "KOLOR": {
+      "source": "FABRIC_FABRICARTICLEHKLREF1",
+      "transform": "copy"
+    },
+    "B": {
+      "source": "FABRIC_WIDTH",
+      "transform": "divide10"
+    },
+    "L": {
+      "source": "FABRIC_HEIGHT_MIDDLE",
+      "transform": "divide10"
+    },
+    "BMALA": {
+      "source": "MONTAŻ",
+      "transform": "lookup"
+    },
+    "STER": {
+      "source": "DELIVERYADDRESS_CITY",
+      "transform": "lookup"
+    },
+    "LPOK": {
+      "source": "MODELL",
+      "transform": "lookup"
+    },
+    "UCHD": {
+      "source": "MONTAŻ",
+      "transform": "lookup"
+    },
+    "EL": {
+      "source": "OPTION_VARIANTCODEEP",
+      "transform": "copy"
+    },
+    "KOLORZAM": {
+      "source": "BEDIENSEITE",
+      "transform": "copy"
+    },
+    "KOLORZAM2": {
+      "source": "SYSTEM_CONTROLLENGHT",
+      "transform": "lookup"
+    },
+    "MT": {
+      "source": "FABRIC_WIDTH",
+      "transform": "lookup"
+    },
+    "CS": {
+      "source": "SYSTEM_CONTROLLENGHT",
+      "transform": "lookup"
+    }
+  },
+  "value_map": {
+    "RODZ": {
+      "": "D-25mm",
+      "AG/DOUPLI/PLISMART": "D-25mm",
+      "PIERRELAYE": "D-25mm",
+      "AG/PLISSE/PLISMART": "P-20mm",
+      "HENIN-BEAUMONT": "D-25mm"
+    },
+    "TYP": {
+      "COSIFLOR": "11",
+      "PL11": "11",
+      "95480": "11",
+      "": "11",
+      "PLE12": "E12",
+      "62110": "11"
+    },
+    "BMALA": {
+      "": "0",
+      "SUFITOWY": "70.3"
+    },
+    "STER": {
+      "VILLIERS SUR MARNE": "L",
+      "PARIS": "R"
+    },
+    "LPOK": {
+      "": "0",
+      "PL11": "150"
+    },
+    "UCHD": {
+      "": "S",
+      "SUFITOWY": "Decketräger"
+    },
+    "KOLORZAM2": {
+      "0": "01"
+    },
+    "MT": {
+      "938": "c2021_MP150",
+      "1.33": "c2021_ML200",
+      "OGER STEPHANIE": "c2021_ML200",
+      "0.612": "c2021_ML150",
+      "0.935": "c2021_MP250",
+      "0.746": "c2021_ML250",
+      "1.1": "c2021_MP200",
+      "GALAND CHRISTOPHE": "c2021_MP200"
+    },
+    "CS": {
+      "": "T"
+    }
+  },
+  "constants": {
+    "MODEL": "PL",
+    "KOLOR2": "-",
+    "LMALA": "0",
+    "UCHG": "S",
+    "DODATKI": "-",
+    "PROW": "-",
+    "MONT_H": "0"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "asortment": "Komponenty elektryczne",
+  "key_map": {
+    "NAGR": {
+      "source": "POLYGON_HEIGHT",
+      "transform": "lookup"
+    },
+    "KOD": {
+      "source": "ILOŚĆ",
+      "transform": "copy"
+    },
+    "T": {
+      "source": "MATERIAL_NAME",
+      "transform": "lookup"
+    }
+  },
+  "value_map": {
+    "NAGR": {
+      "0.00": "Raffrollo",
+      "": "Rollo"
+    },
+    "T": {
+      "": "NE",
+      "TOESLAG_USB_ADAPTER_-_STEKKER": "BUS",
+      "TOESLAG_AFSTANDBEDIENING_1_KANAAL": "BUS",
+      "TOESLAG_AFSTANDBEDIENING_15_KANALEN": "BUS",
+      "AUFPREIS_USB_ADAPTER_-_STECKER": "T",
+      "AUFPREIS_FERNBEDIENUNG_1_KANAL": "T"
+    }
+  },
+  "constants": {
+    "KODPCB": "-",
+    "CENAN": "0",
+    "CENAS": "0"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "asortment": "komponenty roletek",
+  "key_map": {
+    "KOD": {
+      "source": "NAZWA KOMPONENTU",
+      "transform": "lookup"
+    }
+  },
+  "value_map": {
+    "KOD": {
+      "TRĂ¤GER BEFESTIGUNSTEIL INSTAL": "RC2044",
+      "30MM WELLE ALUMINIUM S": "RTU-30",
+      "ROLLOTRĂ¤GER S METALL - CW": "RC2006-W",
+      "LAGERBOLZEN": "RC2003-W",
+      "GEGENLAGER S": "RC2002-W",
+      "KUNSTSTOFFKAPPE METALTRĂ¤GER S CW": "RC2007-W",
+      "GETRIEBE 1": "RC2001-W",
+      "KUNSTSTOF KUGELKETTE 4.5MM 6.2MM": "V15DP",
+      "WANDTRĂ¤GER": "CS80-WB-WH",
+      "KETTENBESCHWERER CREME": "24761550527",
+      "KUNTOF KUGELKETTE 4.5MM 6.2MM": "V15DP-BK",
+      "REINIGUNGSTUCH": "49091",
+      "UNIVERSAL KLEMMTRAGER SCHWARZ": "4150108-749",
+      "UNIVERSAL KLEMMTRAGER WEISS": "4150108-701",
+      "KETTENBESCHWERER WEISS": "24761550610",
+      "ROLLO ENDKAPPE METALL M": "RC3012-STS",
+      "ROLLO SCHRAUBENKAPPE METALL M": "RC3013-STS",
+      "BED.KETTEMETALL 4.45MM ENDLOS": "V15M",
+      "KLEMMBLECH FĂĽR KLEBEPROFIL": "5322510-99900",
+      "BED.KETTEMETALL 4.45MMENDLOS": "V15M-GN",
+      "ENDCAP SQUARE BOTTOMRAIL BLACK": "RC3042-BK"
+    }
+  },
+  "constants": {
+    "T": "NE",
+    "CENAN": "0",
+    "CENAS": "0"
+  }
+}

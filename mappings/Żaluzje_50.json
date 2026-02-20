@@ -1,0 +1,103 @@
+{
+  "asortment": "Żaluzje 50",
+  "key_map": {
+    "KOLOR": {
+      "source": "KOLOR",
+      "transform": "copy"
+    },
+    "GAT": {
+      "source": "TYP_SZYNY",
+      "transform": "lookup"
+    },
+    "SL": {
+      "source": "SYSTEM_CONTROLLENGHT",
+      "transform": "lookup"
+    },
+    "B": {
+      "source": "B",
+      "transform": "copy"
+    },
+    "L": {
+      "source": "H(LEWA)",
+      "transform": "copy"
+    },
+    "ST": {
+      "source": "STR.STEROWANIA",
+      "transform": "copy"
+    },
+    "PROW": {
+      "source": "B",
+      "transform": "lookup"
+    },
+    "LINK": {
+      "source": "PROW.BOCZ.",
+      "transform": "lookup"
+    },
+    "LPOK": {
+      "source": "DŁUGOŚĆ_STER.",
+      "transform": "copy"
+    },
+    "UCH": {
+      "source": "UCHWYT",
+      "transform": "copy"
+    },
+    "EL": {
+      "source": "SLATS_WIDTH",
+      "transform": "lookup"
+    },
+    "CS": {
+      "source": "CS",
+      "transform": "lookup"
+    },
+    "KOLOR_ZAM": {
+      "source": "KOLOR",
+      "transform": "copy"
+    }
+  },
+  "value_map": {
+    "GAT": {
+      "": "I50",
+      "ULTIMATE50": "U50",
+      "BASIC": "I50"
+    },
+    "SL": {
+      "": "S1R"
+    },
+    "PROW": {
+      "83": "odd 2 schn",
+      "67": "2 schn",
+      "65.5": "odd 2 schn",
+      "91": "odd 2 schn"
+    },
+    "LINK": {
+      "NIE": "Nie",
+      "2 LINKI": "2 linki"
+    },
+    "EL": {
+      "86.0": "EP_M47_P00_R00_A00_X00_Y00_Z00",
+      "176.0": "EP_M06_P00_R02_A00_X00_Y00_Z00",
+      "103.5": "EP_M06_P00_R00_A00_X00_Y00_Z00",
+      "105.0": "EP_M06_P00_R00_A00_X00_Y00_Z00",
+      "": "EP_M06_P06_R00_A00_X00_Y00_Z00",
+      "218.0": "EP_M09_P00_R00_A00_X00_Y00_Z00",
+      "268.0": "EP_M47_P00_R00_A00_X00_Y00_Z00"
+    },
+    "CS": {
+      "": "T",
+      "CHILD SAFETY: TAK": "T",
+      "CHILD SAFETY: NIE": "N"
+    }
+  },
+  "constants": {
+    "TYP": "50",
+    "WYMD": "0",
+    "BQ": "-",
+    "WYPR": "-",
+    "KOLOR2": "-",
+    "MONT_H": "0",
+    "I": "-",
+    "KOLORZAM2": "-",
+    "UCH_BOCZ": "-",
+    "MONT": "-"
+  }
+}

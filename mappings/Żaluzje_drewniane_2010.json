@@ -1,0 +1,117 @@
+{
+  "asortment": "Żaluzje drewniane 2010",
+  "key_map": {
+    "TYP": {
+      "source": "BREITE_CM",
+      "transform": "copy"
+    },
+    "KOLOR": {
+      "source": "KOLOR",
+      "transform": "copy"
+    },
+    "BLE_TYP": {
+      "source": "SZER_BLENDY",
+      "transform": "divide10"
+    },
+    "B": {
+      "source": "B",
+      "transform": "copy"
+    },
+    "H": {
+      "source": "H(LEWA)",
+      "transform": "copy"
+    },
+    "STER_TYP": {
+      "source": "STEROWANIE",
+      "transform": "copy"
+    },
+    "STER_L": {
+      "source": "BEDIENLAENGE_CM",
+      "transform": "copy"
+    },
+    "STER_STR": {
+      "source": "STRONA_STEROWANIA",
+      "transform": "copy"
+    },
+    "UCH_DOL": {
+      "source": "H(LEWA)",
+      "transform": "lookup"
+    },
+    "UCH": {
+      "source": "UCHWYTY",
+      "transform": "copy"
+    },
+    "SL": {
+      "source": "AUSSTAT. BLENDE",
+      "transform": "lookup"
+    },
+    "LINK": {
+      "source": "H(LEWA)",
+      "transform": "lookup"
+    },
+    "KOLOR_ZAM": {
+      "source": "KOLOR",
+      "transform": "copy"
+    }
+  },
+  "value_map": {
+    "UCH_DOL": {
+      "194": "Türclips",
+      "211.2": "Türclips",
+      "237.7": "wew",
+      "238.5": "zew",
+      "148": "zew",
+      "117.5": "wew",
+      "214": "wew",
+      "213": "wew",
+      "163.5": "Tak ODD",
+      "138.5": "Türclips",
+      "155.5": "Türclips",
+      "219": "Türclips",
+      "109": "zew",
+      "104": "Tak ODD",
+      "235.5": "zew",
+      "105": "zew",
+      "": "PCVR",
+      "103": "Tak ODD",
+      "221.5": "zew",
+      "130": "Türclips",
+      "143": "Türclips"
+    },
+    "SL": {
+      "": "42",
+      "INDIVIDUEL": "Trapeze"
+    },
+    "LINK": {
+      "194": "Türclips",
+      "211.2": "Türclips",
+      "237.7": "2 LINKI WEW",
+      "238.5": "2 LINKI ZEW",
+      "148": "2 LINKI ZEW",
+      "117.5": "2 LINKI WEW",
+      "214": "2 LINKI WEW",
+      "213": "2 LINKI WEW",
+      "163.5": "Tak ODD",
+      "138.5": "Türclips",
+      "155.5": "Türclips",
+      "219": "Türclips",
+      "109": "2 LINKI ZEW",
+      "104": "Tak ODD",
+      "235.5": "2 LINKI ZEW",
+      "105": "2 LINKI ZEW",
+      "103": "Tak ODD",
+      "221.5": "2 LINKI ZEW",
+      "130": "Türclips",
+      "143": "Türclips"
+    }
+  },
+  "constants": {
+    "KOLOR2": "-",
+    "WYMD": "0",
+    "MONT_H": "0",
+    "BQ": "-",
+    "KOLORZAM2": "-",
+    "UCH_BOCZ": "-",
+    "MONT": "-"
+  }
+}

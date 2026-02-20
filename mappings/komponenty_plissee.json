@@ -1,0 +1,14 @@
+{
+  "asortment": "komponenty plissee",
+  "key_map": {
+    "KOD": {
+      "source": "NR KOMPONENTU",
+      "transform": "copy"
+    }
+  },
+  "value_map": {},
+  "constants": {
+    "CENAN": "0",
+    "CENAS": "0"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "asortment": "Żaluzje 60 80 88",
+  "key_map": {
+    "TYP": {
+      "source": "O_AREA2",
+      "transform": "lookup"
+    },
+    "KOLL": {
+      "source": "O_AREA2",
+      "transform": "lookup"
+    },
+    "B": {
+      "source": "O_AREA2",
+      "transform": "lookup"
+    },
+    "L": {
+      "source": "O_AREA2",
+      "transform": "lookup"
+    },
+    "STER": {
+      "source": "O_AREA2",
+      "transform": "lookup"
+    },
+    "TYPBLE": {
+      "source": "O_AREA2",
+      "transform": "lookup"
+    }
+  },
+  "value_map": {
+    "TYP": {
+      "147210": "ELC80",
+      "102138": "ELZ90"
+    },
+    "KOLL": {
+      "147210": "RAL 7016",
+      "102138": "DB 703"
+    },
+    "B": {
+      "147210": "147",
+      "102138": "102"
+    },
+    "L": {
+      "147210": "210",
+      "102138": "138"
+    },
+    "STER": {
+      "147210": "EL-Prawy",
+      "102138": "EL-Lewy"
+    },
+    "TYPBLE": {
+      "147210": "Blende Typ B",
+      "102138": "Blende Typ A"
+    }
+  },
+  "constants": {
+    "RD": "-",
+    "TYPL": "-",
+    "WYM": "-",
+    "PBL": "A",
+    "PBP": "A",
+    "KOLPB": "-",
+    "UCHPB": "L-70",
+    "LINKA": "-",
+    "DLK": "0",
+    "KOLK": "RAL",
+    "KATK": "0",
+    "S": "-",
+    "POLGN": "0",
+    "PRZEL": "-",
+    "KOLLD": "-",
+    "BLEBOCZ": "T",
+    "BLEA": "0",
+    "BLEB": "0",
+    "BLEC": "0",
+    "BLEKOL": "-",
+    "Z": "T"
+  }
+}

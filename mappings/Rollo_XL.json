@@ -1,0 +1,269 @@
+{
+  "asortment": "Rollo XL",
+  "key_map": {
+    "STSTER": {
+      "source": "SYSTEM_MANEUVERSIDE",
+      "transform": "lookup"
+    },
+    "MODEL": {
+      "source": "FABRIC_WIDTH",
+      "transform": "lookup"
+    },
+    "SYSKOL": {
+      "source": "FINITION_FINITIONARTICLE",
+      "transform": "lookup"
+    },
+    "SREDRU": {
+      "source": "FABRIC_WIDTH",
+      "transform": "lookup"
+    },
+    "KOLOR": {
+      "source": "FABRIC_FABRICARTICLE",
+      "transform": "lookup"
+    },
+    "B": {
+      "source": "FABRIC_WIDTH",
+      "transform": "lookup"
+    },
+    "L": {
+      "source": "DELIVERYADDRESS_CUSTOMERNAME",
+      "transform": "lookup"
+    },
+    "LPOK": {
+      "source": "DELIVERYADDRESS_ADDRESS",
+      "transform": "lookup"
+    },
+    "UCH": {
+      "source": "FABRIC_WIDTH",
+      "transform": "lookup"
+    },
+    "PB": {
+      "source": "SRCID",
+      "transform": "lookup"
+    },
+    "LISD": {
+      "source": "FABRIC_FABRICARTICLE",
+      "transform": "lookup"
+    },
+    "EL": {
+      "source": "SYSTEM_VARIANTCODE",
+      "transform": "lookup"
+    },
+    "KOLOR_ZAM": {
+      "source": "FABRIC_FABRICARTICLE",
+      "transform": "lookup"
+    },
+    "KRNAW": {
+      "source": "SYSTEM_OUTERWINDING",
+      "transform": "lookup"
+    }
+  },
+  "value_map": {
+    "STSTER": {
+      "G": "C",
+      "D": "D"
+    },
+    "MODEL": {
+      "2.76": "XL65",
+      "2.49": "LR1C",
+      "2.8": "XL65",
+      "1": "XL80",
+      "2.45": "LR1A",
+      "2.95": "XL65",
+      "3.09": "XL65",
+      "3.11": "XL65",
+      "3.05": "XL65",
+      "3.2": "XL65",
+      "2.74": "XL65",
+      "3.19": "XL65",
+      "3.17": "XL80",
+      "3.59": "XL80",
+      "3.23": "XL65",
+      "1.96": "LR1C",
+      "1.67": "XL65",
+      "2.24": "LR1A",
+      "3.1": "XL65",
+      "3.47": "XL80"
+    },
+    "SYSKOL": {
+      "AG/ENROULGRIS/SMARTXL": "A",
+      "AG/ENROULNOIR/SMARTXL": "BK",
+      "AG/ENROULBLANC/SMARTXL": "W"
+    },
+    "SREDRU": {
+      "2.76": "65",
+      "2.49": "50",
+      "2.8": "65",
+      "1": "80",
+      "2.45": "50",
+      "2.95": "65",
+      "3.09": "65",
+      "3.11": "65",
+      "3.05": "65",
+      "3.2": "65",
+      "2.74": "65",
+      "3.19": "65",
+      "3.17": "80",
+      "3.59": "80",
+      "3.23": "65",
+      "1.96": "50",
+      "1.67": "65",
+      "2.24": "50",
+      "3.1": "65",
+      "3.47": "80"
+    },
+    "KOLOR": {
+      "MT/FIDJI05CHINEGRIS/L300": "2830",
+      "MT/FIDJI03NOIR/L300": "2825",
+      "MT/TONGA01ECRUFRONT/L300": "3403",
+      "MT/FIDJI01BLANC/L250": "2811",
+      "MT/FIDJI01CHOCO/L250": "2818",
+      "MT/FIDJI05GREIGE/L300": "2829",
+      "MT/FIDJI03ECRU/L300": "2820",
+      "MT/TONGA01BEIGEFRONT/L300": "3404",
+      "MT/TONGA03BEIGEFRONT/L300": "3399",
+      "MT/FIDJI01NOIR/L250": "2817",
+      "MT/FIDJI01ECRU/L250": "2812",
+      "MT/KORORBLANC/L280": "2474",
+      "MT/CABRERABONATUREL/L280": "3013",
+      "MT/BORNEO05GRIS/L300": "3409"
+    },
+    "B": {
+      "2.76": "276",
+      "2.49": "249",
+      "2.8": "280",
+      "1": "100",
+      "2.45": "245",
+      "2.95": "295",
+      "3.09": "309",
+      "3.11": "311",
+      "3.05": "305",
+      "3.2": "320",
+      "2.74": "274",
+      "3.19": "319",
+      "3.17": "317",
+      "3.59": "359",
+      "3.23": "323",
+      "1.96": "196",
+      "1.67": "167",
+      "2.24": "224",
+      "3.1": "310",
+      "3.47": "347"
+    },
+    "L": {
+      "LORENZ VERONICA": "224",
+      "SALOMON JEAN-FRANCOIS": "238",
+      "BERNABEU LIONEL": "305",
+      "": "535",
+      "OHAN  ELISA": "215",
+      "DEQUIER MARIE-LUCIE": "162",
+      "DC COSTOMIZING": "260",
+      "DESCHIETERE DOMINIQUE": "258",
+      "BROCHIER STEPHANE": "300",
+      "CERCEAU CAROLINE": "200",
+      "SCHLOSSER JULIE": "244",
+      "SMAJLAJ SEMA": "155",
+      "TSOU XIAODONG": "220",
+      "THEUNINCK VEERLE": "255",
+      "DE BRIEY VICTORIA": "288",
+      "ANSART MARIE JULIE": "240",
+      "GODFREY ELLIE": "149"
+    },
+    "LPOK": {
+      "14 AVENUE DE HINNISDAEL": "150",
+      "KORTRIJKSTRAAT 341/6": "100",
+      "254 AVENUE DES PEINTRES ROUX": "0",
+      "130 CHEMIN DU PONT BLANC": "0",
+      "81 RUE DE LA REINE": "150",
+      "AVENUE DU MAINE 104106": "100",
+      "PUITVOETSTRAAT 6": "125",
+      "54 COURS DE LA LIBERTÉ": "225",
+      "153 RUE DU COLONEL MULLER": "125",
+      "CHAUSSEE DE BRUXELLES 370": "150",
+      "LEOPOLDLAAN 130": "125",
+      "ZAC DES PORTES DE VILLIERS - LOT. VA5": "0",
+      "BRUGSESTEENWEG 383A": "100",
+      "480 CHAUSSÉE DE WATERLOO": "125",
+      "18 ROUTE DE LUXEMBOURG": "125"
+    },
+    "UCH": {
+      "2.76": "Decken",
+      "2.49": "Decken",
+      "2.8": "Decken",
+      "1": "Wand",
+      "2.45": "Wand",
+      "2.95": "Wand",
+      "3.09": "Decken",
+      "3.11": "Decken",
+      "3.05": "Decken",
+      "3.2": "Decken",
+      "2.74": "Decken",
+      "3.19": "Decken",
+      "3.17": "Decken",
+      "3.59": "Decken",
+      "3.23": "Decken",
+      "1.96": "Decken",
+      "1.67": "Decken",
+      "2.24": "Decken",
+      "3.1": "Decken",
+      "3.47": "Decken"
+    },
+    "PB": {
+      "HEYTENS": "zew"
+    },
+    "LISD": {
+      "MT/FIDJI05CHINEGRIS/L300": "RCU26(A)",
+      "MT/FIDJI03NOIR/L300": "RCU26(BK)",
+      "MT/TONGA01ECRUFRONT/L300": "RCU26(W)",
+      "MT/FIDJI01BLANC/L250": "RCU26(W)",
+      "MT/FIDJI01CHOCO/L250": "RCU26(BK)",
+      "MT/FIDJI05GREIGE/L300": "RCU26(A)",
+      "MT/FIDJI03ECRU/L300": "RCU26(W)",
+      "MT/TONGA01BEIGEFRONT/L300": "RCU26(W)",
+      "MT/TONGA03BEIGEFRONT/L300": "RCU26(W)",
+      "MT/FIDJI01NOIR/L250": "RCU26(BK)",
+      "MT/FIDJI01ECRU/L250": "RCU26(W)",
+      "MT/KORORBLANC/L280": "RCU26(W)",
+      "MT/CABRERABONATUREL/L280": "RCU26(A)",
+      "MT/BORNEO05GRIS/L300": "RCU26(W)"
+    },
+    "EL": {
+      "RB1_A2_B2_M05_D3_E1_": "EP_M05_P03_R02_A00_X00_Y00_Z00",
+      "RB1_A2_B1_M05_D1_E1_": "EP_M05_P00_R00_A00_X00_Y00_Z00",
+      "RB1_A11_B1_C17_D1_E1_": "EP_M11_P00_R00_A00_X00_Y00_Z00",
+      "RB1_A11_B1_C15_D2_E1_": "EP_M09_P00_R01_A00_X00_Y00_Z00",
+      "RB1_A2_B2_M49_D2_E1_": "EP_M49_P03_R01_A00_X00_Y00_Z00",
+      "RB1_A11_B1_C17_D2_E1_": "EP_M11_P00_R01_A00_X00_Y00_Z00",
+      "RB2_A4_B1_C37_D1_E1_": "EP_M24_P00_R00_A00_X00_Y00_Z00"
+    },
+    "KOLOR_ZAM": {
+      "MT/FIDJI05CHINEGRIS/L300": "mt/fidji05chinegris/l300",
+      "MT/FIDJI03NOIR/L300": "mt/fidji03noir/l300",
+      "MT/TONGA01ECRUFRONT/L300": "mt/tonga01ecrufront/l300",
+      "MT/FIDJI01BLANC/L250": "mt/fidji01blanc/l250",
+      "MT/FIDJI01CHOCO/L250": "mt/fidji01choco/l250",
+      "MT/FIDJI05GREIGE/L300": "mt/fidji05greige/l300",
+      "MT/FIDJI03ECRU/L300": "mt/fidji03ecru/l300",
+      "MT/TONGA01BEIGEFRONT/L300": "mt/tonga01beigefront/l300",
+      "MT/TONGA03BEIGEFRONT/L300": "mt/tonga03beigefront/l300",
+      "MT/FIDJI01NOIR/L250": "mt/fidji01noir/l250",
+      "MT/FIDJI01ECRU/L250": "mt/fidji01ecru/l250",
+      "MT/KORORBLANC/L280": "mt/kororblanc/l280",
+      "MT/CABRERABONATUREL/L280": "mt/cabrerabonaturel/l280",
+      "MT/BORNEO05GRIS/L300": "mt/borneo05gris/l300"
+    },
+    "KRNAW": {
+      "0": "ST",
+      "1": "KR"
+    }
+  },
+  "constants": {
+    "WYM": "C",
+    "FAL": "-",
+    "TUBA": "T",
+    "MONT_H": "0",
+    "CS": "N",
+    "UCH_BOCZ": "-",
+    "MONT": "-"
+  }
+}

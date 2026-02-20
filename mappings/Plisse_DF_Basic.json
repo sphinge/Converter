@@ -1,0 +1,93 @@
+{
+  "asortment": "Plisse DF Basic",
+  "key_map": {
+    "MODEL": {
+      "source": "O_MODELL",
+      "transform": "lookup"
+    },
+    "OKMOD": {
+      "source": "O_TYP",
+      "transform": "lookup"
+    },
+    "OKTYP": {
+      "source": "O_TYP",
+      "transform": "lookup"
+    },
+    "KOLOR": {
+      "source": "O_MODELL",
+      "transform": "lookup"
+    },
+    "KOLSYST": {
+      "source": "O_MODELL",
+      "transform": "lookup"
+    },
+    "B": {
+      "source": "O_TYP",
+      "transform": "lookup"
+    },
+    "L": {
+      "source": "O_TYP",
+      "transform": "lookup"
+    }
+  },
+  "value_map": {
+    "MODEL": {
+      "COMFORT": "DFC",
+      "STANDARD": "DF"
+    },
+    "OKMOD": {
+      "808": "GGL",
+      "308": "GGL",
+      "MK04": "GGL",
+      "SK34": "GIU",
+      "MK10": "GPU",
+      "UK08": "GGU"
+    },
+    "OKTYP": {
+      "808": "(808)",
+      "308": "-308",
+      "MK04": "MK04",
+      "SK34": "SK34",
+      "MK10": "MK10",
+      "UK08": "UK08"
+    },
+    "KOLOR": {
+      "COMFORT": "B0001",
+      "STANDARD": "B0164"
+    },
+    "KOLSYST": {
+      "COMFORT": "Biały",
+      "STANDARD": "silber"
+    },
+    "B": {
+      "808": "117.3",
+      "308": "61.3",
+      "MK04": "61.3",
+      "SK34": "97.2",
+      "MK10": "61.3",
+      "UK08": "117.3"
+    },
+    "L": {
+      "808": "116",
+      "308": "116",
+      "MK04": "79.5",
+      "SK34": "74",
+      "MK10": "141.7",
+      "UK08": "121.5"
+    }
+  },
+  "constants": {
+    "RODZ": "PBA",
+    "TYP": "10 Basic",
+    "PROD": "VELUX",
+    "KOLOR2": "-",
+    "STER": "-",
+    "LPOK": "0",
+    "UCH": "CX-008",
+    "PROFWZ": "-",
+    "TUBA": "T",
+    "MON": "-",
+    "KOLOR_ZAM": "-",
+    "KOLORZAM2": "-"
+  }
+}

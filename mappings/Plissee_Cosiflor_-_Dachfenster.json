@@ -1,0 +1,94 @@
+{
+  "asortment": "Plissee Cosiflor - Dachfenster",
+  "key_map": {
+    "RODZ": {
+      "source": "SYSTEM_MODELE",
+      "transform": "lookup"
+    },
+    "PROD": {
+      "source": "DACHFENSTER HERSTELLER",
+      "transform": "lookup"
+    },
+    "KOLOR": {
+      "source": "FABRIC_FABRICARTICLEHKLREF1",
+      "transform": "copy"
+    },
+    "KOLOR2": {
+      "source": "SYSTEM_CONTROLLENGHT",
+      "transform": "lookup"
+    },
+    "B": {
+      "source": "BREITE_HINTEN_DF_ANLAGEN",
+      "transform": "copy"
+    },
+    "L": {
+      "source": "HOEHE_HINTEN_DF_ANLAGEN",
+      "transform": "copy"
+    },
+    "RODZST": {
+      "source": "SYSTEM_CONTROLLENGHT",
+      "transform": "lookup"
+    },
+    "TUBA": {
+      "source": "DACHFENSTER HERSTELLER",
+      "transform": "lookup"
+    },
+    "KOLORZAM": {
+      "source": "FARBE",
+      "transform": "copy"
+    },
+    "KOLORZAM2": {
+      "source": "SYSTEM_CONTROLLENGHT",
+      "transform": "lookup"
+    }
+  },
+  "value_map": {
+    "RODZ": {
+      "": "P-20mm",
+      "GPU-SK06": "P-20mm",
+      "GPU-SK10": "P-20mm",
+      "GHL-606": "D-25mm",
+      "GPL-SK08": "D-25mm",
+      "GHL-M06": "D-25mm"
+    },
+    "PROD": {
+      "VELUX GPL 306": "Velux",
+      "VELUX GGU FK06": "Velux",
+      "ROTO 8...K 6/11": "Roto",
+      "": "VELUX",
+      "ROTO 7...H+K 7/11": "Roto",
+      "VELUX VL 085A": "VELUX"
+    },
+    "KOLOR2": {
+      "": "3411",
+      "0": "8523"
+    },
+    "RODZST": {
+      "": "303020",
+      "0": "c2021_MŁD150"
+    },
+    "TUBA": {
+      "VELUX GPL 306": "DPD",
+      "VELUX GGU FK06": "DPD",
+      "": "T",
+      "ROTO 8...K 6/11": "DPD",
+      "ROTO 7...H+K 7/11": "T",
+      "VELUX VL 085A": "T"
+    },
+    "KOLORZAM2": {
+      "": "2274"
+    }
+  },
+  "constants": {
+    "MODEL": "DF",
+    "BMALA": "0",
+    "LMALA": "0",
+    "STER": "-",
+    "LPOK": "0",
+    "UCHG": "S",
+    "UCHD": "S",
+    "DODATKI": "-",
+    "EL": "-",
+    "MT": "-"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "asortment": "Vertikale",
+  "key_map": {
+    "TYP": {
+      "source": "STK.",
+      "transform": "copy"
+    },
+    "KOLOR": {
+      "source": "FARBE STOFF",
+      "transform": "copy"
+    },
+    "B": {
+      "source": "B",
+      "transform": "copy"
+    },
+    "L": {
+      "source": "SLATS_HEIGHT",
+      "transform": "copy"
+    },
+    "WYM3": {
+      "source": "PRICE",
+      "transform": "copy"
+    },
+    "PAC": {
+      "source": "SYSTEM_PACKAGESIDE",
+      "transform": "copy"
+    },
+    "BLAM": {
+      "source": "SLATS_BLAM",
+      "transform": "copy"
+    },
+    "LSTER": {
+      "source": "HOEHE_CM",
+      "transform": "copy"
+    },
+    "UCH": {
+      "source": "STK.",
+      "transform": "copy"
+    },
+    "PROT": {
+      "source": "SLATS_OVERLAP",
+      "transform": "lookup"
+    },
+    "MODEL": {
+      "source": "PRICE",
+      "transform": "divide10"
+    },
+    "KOLOR_ZAM": {
+      "source": "FARBE STOFF",
+      "transform": "copy"
+    },
+    "KOLOR2": {
+      "source": "SLATS_AMOUNTSLATS1",
+      "transform": "lookup"
+    },
+    "KOLORZAM2": {
+      "source": "SLATS_AMOUNTSLATS1",
+      "transform": "lookup"
+    },
+    "IPAN": {
+      "source": "SLATS_AMOUNTSLATS1",
+      "transform": "copy"
+    },
+    "KOR": {
+      "source": "PRICE",
+      "transform": "copy"
+    }
+  },
+  "value_map": {
+    "PROT": {
+      "D": "D",
+      "G": "C",
+      "": "Nie"
+    },
+    "KOLOR2": {
+      "30": "m2: 4049 x 21",
+      "10": "m2: 4051 x 9",
+      "MINE FRANCIS": "m2: 4051 x 12",
+      "": "2218"
+    },
+    "KOLORZAM2": {
+      "30": "mt/borneo05grischine/l89",
+      "10": "mt/iki05jute/l127",
+      "MINE FRANCIS": "mt/iki05jute/l127",
+      "": "6 x 2218"
+    }
+  },
+  "constants": {
+    "SYS": "DM"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "asortment": "Plisse Basic 2013",
+  "key_map": {
+    "RODZ": {
+      "source": "DELIVERER",
+      "transform": "lookup"
+    },
+    "KOLOR": {
+      "source": "FARBE",
+      "transform": "copy"
+    },
+    "B": {
+      "source": "BREITE_CM",
+      "transform": "copy"
+    },
+    "L": {
+      "source": "HOEHE_CM",
+      "transform": "copy"
+    },
+    "STER": {
+      "source": "BREITE_CM",
+      "transform": "copy"
+    },
+    "UCH": {
+      "source": "P_MONTAZ",
+      "transform": "copy"
+    },
+    "TUBA": {
+      "source": "TEXT",
+      "transform": "lookup"
+    },
+    "KOLOR_ZAM": {
+      "source": "H",
+      "transform": "lookup"
+    }
+  },
+  "value_map": {
+    "RODZ": {
+      "": "PBA",
+      "UPS/DPD": "PLB-20mm"
+    },
+    "TUBA": {
+      "#PZAO-EMAIL:ONLINESHOP@JALOUCITY.COM#": "GLS",
+      "": "T",
+      "#PZAO-EMAIL:ESSEN-MITTE@JALOUCITY.COM#": "T"
+    },
+    "KOLOR_ZAM": {
+      "182": "B0133",
+      "111.5": "B0001",
+      "59.5": "B0001",
+      "33.5": "B0122",
+      "200": "B0120",
+      "110": "B0120",
+      "107.7": "B0142",
+      "114.5": "B0142",
+      "94.5": "B0142",
+      "93.4": "B0142",
+      "87.5": "B0120",
+      "88.5": "B0120",
+      "214": "B0120",
+      "139": "B0001",
+      "120": "B0120",
+      "102": "B0120",
+      "93": "B0120",
+      "119": "B0139",
+      "116": "B0133",
+      "92": "B0244",
+      "207": "B0120",
+      "52": "B0122",
+      "109": "B0146",
+      "20": "B0002",
+      "186": "B0139",
+      "31.5": "B0133",
+      "189.5": "B0122",
+      "198": "B0001"
+    }
+  },
+  "constants": {
+    "TYP": "2",
+    "MODEL": "TB",
+    "KOLOR2": "-",
+    "PROFWZ": "-",
+    "MON": "-",
+    "KOLORZAM2": "-"
+  }
+}

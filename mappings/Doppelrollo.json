@@ -1,0 +1,79 @@
+{
+  "asortment": "Doppelrollo",
+  "key_map": {
+    "KOLOR": {
+      "source": "FABRIC_FABRICARTICLEHKLREF",
+      "transform": "copy"
+    },
+    "B": {
+      "source": "SZEROKOŚĆ (CM)",
+      "transform": "copy"
+    },
+    "H": {
+      "source": "WYSOKOŚĆ (CM)",
+      "transform": "copy"
+    },
+    "LSTER": {
+      "source": "PRICE",
+      "transform": "copy"
+    },
+    "UCHG": {
+      "source": "UCHWYTY",
+      "transform": "copy"
+    },
+    "PAK": {
+      "source": "WYPOSAŻENIE",
+      "transform": "lookup"
+    },
+    "SREDRU": {
+      "source": "SYSTEM_TUBEDIAMETER",
+      "transform": "lookup"
+    },
+    "KORKOL": {
+      "source": "KOLOR ŁAŃCUSZKA",
+      "transform": "lookup"
+    },
+    "EL": {
+      "source": "OPTION_REMOTEARTICLEHKLREF",
+      "transform": "lookup"
+    },
+    "KOLOR_ZAM": {
+      "source": "KOLOR TKANINY",
+      "transform": "copy"
+    }
+  },
+  "value_map": {
+    "PAK": {
+      "": "T",
+      "--": "NE",
+      "ZUGESCHLOSSEN": "NE"
+    },
+    "SREDRU": {
+      "38": "38",
+      "30": "30",
+      "28": "28",
+      "35": "35",
+      "": "0",
+      "42": "42"
+    },
+    "KORKOL": {
+      "WEISS": "PVC-W",
+      "METAL": "MET",
+      "GRAU NICKEL": "C02",
+      "GRAU": "PVC-A"
+    },
+    "EL": {
+      "D21": "EP_M09_P00_R03_A00_X00_Y00_Z00",
+      "NULL": "EP_M09_P00_R00_A00_X00_Y00_Z00"
+    }
+  },
+  "constants": {
+    "WYM": "C",
+    "PB": "-",
+    "UCHD": "-",
+    "TYP": "-",
+    "MONT_H": "0",
+    "MONT": "-",
+    "UCH_BOCZ": "-"
+  }
+}

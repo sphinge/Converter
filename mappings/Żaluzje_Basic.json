@@ -1,0 +1,96 @@
+{
+  "asortment": "Żaluzje Basic",
+  "key_map": {
+    "TYP": {
+      "source": "MODELL_JALOUSIE_EUROPA_BASIC",
+      "transform": "lookup"
+    },
+    "B": {
+      "source": "BREITE_CM",
+      "transform": "copy"
+    },
+    "KOLOR_ZAM": {
+      "source": "O_LAMMELENFARBE_AUSWÄHLEN",
+      "transform": "copy"
+    },
+    "H": {
+      "source": "HOEHE_CM",
+      "transform": "copy"
+    },
+    "STER_TYP": {
+      "source": "BED",
+      "transform": "copy"
+    },
+    "CHS": {
+      "source": "B",
+      "transform": "lookup"
+    },
+    "STER_L": {
+      "source": "BEDIENLAENGE_CM",
+      "transform": "copy"
+    },
+    "LSZNUR": {
+      "source": "BEDIENLAENGE_CM",
+      "transform": "copy"
+    },
+    "TEKS_KOLOR": {
+      "source": "BEDIENLAENGE_CM",
+      "transform": "lookup"
+    },
+    "UCH_GOR": {
+      "source": "POS.",
+      "transform": "copy"
+    },
+    "PROW_BO": {
+      "source": "BEDIENLAENGE_CM",
+      "transform": "lookup"
+    }
+  },
+  "value_map": {
+    "TYP": {
+      "I25_SD": "I25SD",
+      "I25_MKKV": "I25MKKv",
+      "I16_SD": "I16SD",
+      "": "I25SD",
+      "I16_MKKV": "I16MKKv"
+    },
+    "CHS": {
+      "": "N",
+      "200": "T",
+      "87.9": "T",
+      "70": "T",
+      "110": "T"
+    },
+    "TEKS_KOLOR": {
+      "": "Dra"
+    },
+    "PROW_BO": {
+      "100": "2ln",
+      "50": "2ln",
+      "80": "2ln",
+      "60": "2ln",
+      "-": "2ln",
+      "": "2ln",
+      "130": "2ln",
+      "70": "2ln",
+      "140": "2ln",
+      "120": "2ln",
+      "75": "2ln",
+      "40": "2ln",
+      "90": "2ln",
+      "180": "2ln",
+      "125": "2ln",
+      "200": "2ln",
+      "110": "2ln",
+      "65": "2ln",
+      "20": "2ln"
+    }
+  },
+  "constants": {
+    "SYST_TYP": "Europe",
+    "MONT_H": "0",
+    "UCH_BOCZ": "-",
+    "DODATKI": "-",
+    "MONT": "-"
+  }
+}

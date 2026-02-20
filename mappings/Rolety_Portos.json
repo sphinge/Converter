@@ -1,0 +1,134 @@
+{
+  "asortment": "Rolety Portos",
+  "key_map": {
+    "B": {
+      "source": "B",
+      "transform": "copy"
+    },
+    "H": {
+      "source": "B",
+      "transform": "lookup"
+    },
+    "ROZSK": {
+      "source": "B",
+      "transform": "lookup"
+    },
+    "WYJSCIE": {
+      "source": "B",
+      "transform": "lookup"
+    },
+    "PROW": {
+      "source": "B",
+      "transform": "lookup"
+    },
+    "MONTPROW": {
+      "source": "B",
+      "transform": "lookup"
+    },
+    "KOLORSK": {
+      "source": "B",
+      "transform": "lookup"
+    },
+    "KOLORPROW": {
+      "source": "B",
+      "transform": "lookup"
+    },
+    "PANC": {
+      "source": "B",
+      "transform": "lookup"
+    },
+    "KOLORPANC": {
+      "source": "B",
+      "transform": "lookup"
+    },
+    "KOLORLISDOL": {
+      "source": "B",
+      "transform": "lookup"
+    },
+    "NAPTAS": {
+      "source": "B",
+      "transform": "lookup"
+    },
+    "NAPLINK": {
+      "source": "B",
+      "transform": "lookup"
+    },
+    "STRSTER": {
+      "source": "B",
+      "transform": "lookup"
+    }
+  },
+  "value_map": {
+    "H": {
+      "174": "134.2",
+      "60": "200",
+      "95": "220"
+    },
+    "ROZSK": {
+      "174": "150",
+      "60": "165",
+      "95": "205"
+    },
+    "WYJSCIE": {
+      "174": "A",
+      "60": "B",
+      "95": "A"
+    },
+    "PROW": {
+      "174": "P",
+      "60": "P",
+      "95": "K"
+    },
+    "MONTPROW": {
+      "174": "A"
+    },
+    "KOLORSK": {
+      "174": "02 - weiß",
+      "60": "23 - antrazit",
+      "95": "09 - braun"
+    },
+    "KOLORPROW": {
+      "174": "02 - weiß",
+      "60": "23 - antrazit",
+      "95": "09 - braun"
+    },
+    "PANC": {
+      "174": "PA-39",
+      "60": "PA-45",
+      "95": "PA-45"
+    },
+    "KOLORPANC": {
+      "174": "02 - weiß",
+      "60": "03 - grau",
+      "95": "09 - braun"
+    },
+    "KOLORLISDOL": {
+      "174": "02 - weiß",
+      "60": "23 - antrazit",
+      "95": "09 - braun"
+    },
+    "NAPTAS": {
+      "60": "zwijacz brąz"
+    },
+    "NAPLINK": {
+      "60": "zwijacz brąz"
+    },
+    "STRSTER": {
+      "174": "P",
+      "60": "L",
+      "95": "L"
+    }
+  },
+  "constants": {
+    "MODEL": "Standard",
+    "TYP": "B",
+    "KOLORBOK": "-",
+    "MOSKOLORS": "-",
+    "MOSKOLORLD": "-",
+    "NAPZWKOR": "-",
+    "NAPSPZW": "-",
+    "NAPSILNIK": "-",
+    "NAPKARD": "-",
+    "PAK": "T"
+  }
+}
