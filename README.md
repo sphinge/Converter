@@ -2,18 +2,16 @@
 
 ## Opis ogólny
 
-Program `converter.py` konwertuje pliki JSON z zamówieniami na pliki XLSX,
-zachowując formuly Excela (kolumny N-W) oraz tablice słownikowe (kolumny X+).
-Wymieniane są jedynie dane w kolumnach A-L.
+Program `converter.py` obsługuje dwa tryby pracy:
 
-Dla znanych typów produktów (14, 71, 24, 43, 39, 59, 75) konwersja jest
-deterministyczna — używane są gotowe szablony. Dla nieznanych typów (np. 80)
-program automatycznie wywołuje API OpenAI GPT, aby przeanalizować strukturę
-JSON i wygenerować nowy szablon, który zostaje zapisany do ponownego użycia.
+1. **Konwersja JSON → XLSX** — konwertuje pliki JSON z zamówieniami na pliki XLSX
+   z formułami Excela i tablicami słownikowymi
+2. **Translator EFOR → PROD** — automatycznie tłumaczy parametry zamówień EFOR
+   na parametry produkcyjne PROD, ucząc się mapowań z danych treningowych
 
 ---
 
-## Jak działa konwersja
+## Część I: Konwersja JSON → XLSX
 
 ### Struktura pliku JSON
 
@@ -95,7 +93,7 @@ Zawierają tablice referencyjne używane przez formuły VLOOKUP. Przykłady:
 
 ---
 
-## Mapowanie nagłówka JSON → Wiersze w kolumnach A-B
+### Mapowanie nagłówka JSON → Wiersze w kolumnach A-B
 
 | Wiersz | Pole A (nazwa) | Pole B (wartość z JSON) |
 |--------|----------------|------------------------|
@@ -116,7 +114,7 @@ Zawierają tablice referencyjne używane przez formuły VLOOKUP. Przykłady:
 | 16 | zip | `json.zip` |
 | 17 | orderid | `json.orderid` |
 
-## Mapowanie pozycji JSON → Wiersze w kolumnach C-D
+### Mapowanie pozycji JSON → Wiersze w kolumnach C-D
 
 | Wiersz | Pole C (nazwa) | Pole D (wartość z JSON) |
 |--------|----------------|------------------------|
@@ -130,7 +128,7 @@ Zawierają tablice referencyjne używane przez formuły VLOOKUP. Przykłady:
 
 ---
 
-## Obsługiwane typy produktów (szablony)
+### Obsługiwane typy produktów (szablony)
 
 Każdy typ produktu wymaga osobnego szablonu XLSX, ponieważ:
 - Parametry (kolumna E) mają inną kolejność i zestaw
@@ -148,95 +146,163 @@ Każdy typ produktu wymaga osobnego szablonu XLSX, ponieważ:
 | **75** | ROLLOS | ABSOLUTE | `LUXANGMBH_TEST_LuxanDE_41-1(1).xlsx` |
 | **80** | MAGNETISCH FRAME | MFPlus | *wygenerowany automatycznie przez GPT API* |
 
-### Kolejność parametrów w szablonie VERTIKAL (#14)
+### Automatyczne generowanie szablonów (GPT API fallback)
 
 ```
-Wiersz  Parametr
-  2     ILOSC
-  3     KONFIGURACJA
-  4     RODZAJ
-  5     MODEL
-  6     KOLOR_SYSTEMU
-  7     KOLOR
-  8     PASEK
-  9     SZEROKOSC
- 10     WYS_RODZ
- 11     WYSOKOSC
- 12     WYMIAROWANIE_SLOPOW
- 13-18  WYMIAROWANIE_SLOPOW.TYP / .WYM_B / .WYM_B1 / .WYM_H / .WYM_H1 / .WYM_H2
- 19     ILOSC_PASK
- 20     KORALIK_OBSL
- 21     DLUGOSC_STER
- 22     MOTOR
- 23     ZASILANIE
- 24     PILOT
- 25     AUTOMATYKA
- 26     KIESZEN
- 27     KORALIK_DOL
- 28     MONTAZ
- 29     OCHRONA_CHILD_SAFETY
- 30     WYSOKOSC_MONTAZU
- 31     POW
- 32-33  INSTRUKCJA / FILM (puste)
- 34     CENA
- 35     DOPLATA
- 36     DOPLATA_EL
- 37     CENA_SUMA
- 38     SUMA_BRUTTO
- 39     CENA_RABAT
- 40     DOPLATA_EL_RABAT
- 41     CENA_KONCOWA
- 42     WARTOSC_KONCOWA
- 43     OPIS_POZYCJI
- 44     OPIS_CENY
- 45     OPIS_RABATU
+Pozycja z JSON → Czy istnieje szablon?
+  TAK → Konwersja deterministyczna (istniejący kod)
+  NIE → GPT API analizuje JSON → Tworzy XLSX + zapisuje szablon do ponownego użycia
 ```
 
-### Kolejność parametrów w szablonie PLISSÉGORDIJNEN EOS (#71)
+Gdy konwerter napotyka typ produktu bez szablonu:
+
+1. **Ekstrakcja nazw parametrów** — z pominięciem metadanych (`___DESCRIPTION`, `_ALIAS`, etc.)
+2. **Zapytanie do GPT** — ustala kolejność parametrów w szablonie
+3. **Tworzenie szablonu** — nagłówki, formuły rejestracyjne (N-O), formuły pozycji (P-Q)
+4. **Zapis** — `templates/template_{ID}.xlsx` do ponownego użycia
+
+**Uwaga:** Szablony GPT nie zawierają formuł VLOOKUP (kolumny S+) ani słowników (kolumny X+) —
+te elementy należy uzupełnić ręcznie.
+
+---
+
+## Część II: Translator EFOR → PROD
+
+### Opis
+
+System EFOR generuje parametry zamówień w formacie JSON. Muszą one zostać
+przetłumaczone na parametry produkcyjne (PROD) dla produkcji. Translator uczy się
+mapowań automatycznie z danych treningowych dostarczonych przez Tomasza.
+
+### Przepływ danych
 
 ```
-Wiersz  Parametr
-  2     ILOSC
-  3     MODEL
-  4     KOLOR
-  5     KOLOR_DODATKOWY
-  6     KOLOR_SYSTE
-  7     SZEROKOSC
-  8     WYSOKOSC
-  9-14  WYMIAROWANIE_SLOPOW.TYP / .WYM_B / .WYM_B1 / .WYM_H / .WYM_H1 / .WYM_H2
- 15     STEROWANIE
- 16     MOTOR
- 17     ZASILANIE
- 18     PILOT
- 19     AUTOMATYKA
- 20     STRONA_STEROWANIA
- 21     FUNKCJA
- 22     KOLOR_STEROWANIA
- 23     STEROWANIE_ELEKTRYCZNE
- 24     STRONA_LADOWANIA
- 25     STRONA_WYJSCIA_PRZEWODU
- 26     OCHRONA_CHILD_SAFETY
- 27     WYSOKOSC_MONTAZU
- 28     DLUGOSC_STER
- 29     PROWADNICE
- 30     PROW_KOLOR
- 31     MONTAZ
- 32     DODATKI
- 33     POW
- 34-35  INSTRUKCJA / FILM (puste)
- 36     CENA
- 37     DOPLATA
- 38     DOPLATA_EL
- 39     CENA_SUMA
- 40     SUMA_BRUTTO
- 41     CENA_RABAT
- 42     DOPLATA_RABAT
- 43     DOPLATA_EL_RABAT
- 44     CENA_KONCOWA
- 45     WARTOSC_KONCOWA
- 46     OPIS_POZYCJI
- 47     OPIS_CENY
- 48     OPIS_RABATU
+Faza uczenia:
+  10.xlsx → parsowanie par → nauka mapowań kluczy/wartości → zapis do mappings/*.json
+
+Faza tłumaczenia:
+  JSON → ekstrakcja parametrów EFOR → dopasowanie ASORTMENT → zastosowanie mapowań → wynik.xlsx
+                                                            ↓ (jeśli nieznany)
+                                                      GPT fallback → sugestia mapowania
+```
+
+### Algorytm uczenia
+
+Dane treningowe (`10/10.xlsx`) zawierają 10 000 par wejście→wyjście z 32 typów
+asortymentu. Dla każdego klucza wyjściowego (PROD) algorytm:
+
+1. Sprawdza czy wartość jest stała (identyczna we wszystkich wierszach) → **stała**
+2. Dla każdego klucza wejściowego (EFOR) oblicza:
+   - Dopasowanie dokładne (`input == output`) → **kopiowanie (copy)**
+   - Dopasowanie po dzieleniu (`input / 10 == output`) → **dzielenie (divide10)**
+   - Spójne mapowanie wartości → **słownik (lookup)**
+3. Wybiera najlepszy klucz źródłowy z wynikiem > 60% par
+4. Zapisuje mapowanie do pliku JSON
+
+### Wykrywane transformacje
+
+| Typ | Przykład | Opis |
+|-----|---------|------|
+| `copy` | SZEROKOSC=3000 → B=3000 | Wartość kopiowana bez zmian |
+| `divide10` | SZEROKOSC=985.0 → B=98.5 | Wartość dzielona przez 10 |
+| `lookup` | STEROWANIE=S → STER_TYP=SS | Słownik mapujący wartości |
+| stała | — → TRANS=T | Zawsze ta sama wartość |
+
+### Dopasowanie ASORTMENT
+
+Pole `department` z JSON (np. "VERTIKAL") musi zostać dopasowane do nazwy ASORTMENT
+z danych treningowych (np. "Vertikale"). Strategia:
+
+1. Dokładne dopasowanie nazwy
+2. Dopasowanie podciągu (case-insensitive) — "VERTIKAL" pasuje do "Vertikale"
+3. Próba z polem `product_description`
+4. Jeśli brak dopasowania → GPT fallback
+
+### Struktura plików mapowań
+
+Każdy plik `mappings/{ASORTMENT}.json` zawiera:
+
+```json
+{
+  "asortment": "Żaluzje drewniane 2010",
+  "key_map": {
+    "B": {"source": "SZEROKOSC", "transform": "divide10"},
+    "H": {"source": "WYSOKOSC", "transform": "divide10"},
+    "KOLOR_ZAM": {"source": "KOLOR", "transform": "copy"},
+    "STER_TYP": {"source": "STEROWANIE", "transform": "lookup"}
+  },
+  "value_map": {
+    "STER_TYP": {"S": "SS", "D": "DD"}
+  },
+  "constants": {
+    "TRANS": "T",
+    "KOLOR2": "-"
+  }
+}
+```
+
+### Plik wynikowy (wynik.xlsx)
+
+- Wiersz 1: nazwy kluczy PROD (nagłówki)
+- Wiersz 2+: przetłumaczone wartości (jeden wiersz na pozycję z JSON)
+- Puste wartości / NULL → "-"
+- Wartości liczbowe zachowują typ numeryczny
+
+---
+
+## Użycie programu
+
+### Konwersja JSON → XLSX
+
+```bash
+# Przygotowanie szablonów (jednorazowo)
+python3 converter.py setup
+
+# Konwersja pojedynczego pliku
+python3 converter.py convert HKL_Maxsol_131.json
+
+# Konwersja wszystkich plików JSON
+python3 converter.py convert-all
+
+# Lista dostępnych szablonów
+python3 converter.py list-templates
+```
+
+### Translator EFOR → PROD
+
+```bash
+# Nauka mapowań z danych treningowych (domyślnie 10/3.xlsx)
+python3 converter.py learn
+python3 converter.py learn 10/10.xlsx
+
+# Tłumaczenie zamówienia JSON na parametry PROD
+python3 converter.py translate HKL_NaOkniePL_29.json
+python3 converter.py translate zamowienie.json wynik_custom.xlsx
+
+# Lista nauczonych mapowań ze statystykami
+python3 converter.py list-mappings
+```
+
+### Katalogi
+
+| Katalog | Opis |
+|---------|------|
+| `templates/` | Szablony XLSX (jeden na typ produktu) |
+| `importyzefordoprod/` | Pliki wejściowe (JSON + przykłady XLSX) |
+| `output/` | Pliki wynikowe (wygenerowane XLSX) |
+| `mappings/` | Nauczone mapowania EFOR→PROD (pliki JSON) |
+| `10/` | Dane treningowe (3.xlsx, 10.xlsx) |
+
+### Konwencja nazewnictwa plików wynikowych
+
+**Konwersja:** `{nazwa_json}({timestamp})-{nr_sekwencyjny}({nr_w_typie}).xlsx`
+```
+HKL_Maxsol_131(20260218_233702)-1(1).xlsx   ← pozycja 1, produkt 14 (1. w typie)
+```
+
+**Translator:** `wynik_{nazwa_json}.xlsx`
+```
+wynik_HKL_NaOkniePL_29.xlsx
 ```
 
 ---
@@ -264,175 +330,32 @@ lub zagnieżdżony obiekt (dict) z podpolami:
   "TYP": "TYP19",
   "WYM_B": 2090,
   "WYM_H1": 2460,
-  "WYM_H2": 1870,
-  ...
+  "WYM_H2": 1870
 }
 ```
 
-W takim przypadku:
+W konwersji:
 - Wiersz główny (WYMIAROWANIE_SLOPOW) → wartość `<NULL>`
 - Podpola (WYMIAROWANIE_SLOPOW.TYP, .WYM_B, etc.) → odpowiednie wartości
 
----
-
-## Automatyczne generowanie szablonów (GPT API fallback)
-
-### Schemat działania
-
-```
-Pozycja z JSON → Czy istnieje szablon?
-  TAK → Konwersja deterministyczna (istniejący kod)
-  NIE → GPT API analizuje JSON → Tworzy XLSX + zapisuje szablon do ponownego użycia
-```
-
-### Jak to działa
-
-Gdy konwerter napotyka typ produktu bez szablonu (np. produkt 80 — MAGNETISCH FRAME):
-
-1. **Wykrycie braku szablonu** — program wypisuje komunikat:
-   `No template for product 80 (MAGNETISCH FRAME). Calling GPT API...`
-
-2. **Ekstrakcja nazw parametrów** — z JSON wyodrębniane są nazwy bazowe
-   parametrów (z pominięciem przyrostków metadanych: `___DESCRIPTION`,
-   `_ALIAS`, `___TITLE`, `___VISIBLE`, `___DICT`)
-
-3. **Zapytanie do GPT** — program buduje prompt zawierający:
-   - Opis oczekiwanej struktury XLSX (kolumny E-L)
-   - Przykład kolejności parametrów ze znanego produktu (VERTIKAL #14)
-   - Listę parametrów nowego produktu
-   - Prośbę o zwrócenie tablicy JSON z parametrami w prawidłowej kolejności
-
-4. **Tworzenie szablonu** — na podstawie odpowiedzi GPT tworzony jest plik XLSX:
-   - Wiersz 1: nagłówki (identyczne jak w istniejących szablonach)
-   - Kolumna E: nazwy parametrów w kolejności określonej przez GPT
-   - Kolumny N-O: uniwersalne formuły rejestracyjne (organizacja, użytkownik, ident)
-   - Kolumny P-Q: formuły pozycji z **dynamicznymi odniesieniami do wierszy**
-     (program sam znajduje, w którym wierszu wylądowały ILOSC, CENA, CENA_KONCOWA, itp.)
-
-5. **Zapis szablonu** — szablon zapisywany jest jako `templates/template_{ID}.xlsx`
-
-6. **Konwersja** — dane z JSON wypełniane są w nowo utworzonym szablonie
-   (identycznie jak dla szablonów deterministycznych)
-
-7. **Ponowne uruchomienie** — przy kolejnym uruchomieniu szablon jest już zapisany,
-   więc GPT API nie jest wywoływane ponownie
-
-### Dynamiczne formuły w kolumnach P-Q
-
-Program automatycznie dopasowuje formuły cenowe do pozycji parametrów:
-
-| Wiersz Q | Pole | Formuła (przykład dla produktu 80) |
-|----------|------|-------------------------------------|
-| Q17 | `liczba` | `=F2` (odniesienie do wiersza ILOSC) |
-| Q19 | `cena_podst` | `=IF(ISERROR($F$17/1),0,$F$17)` (odniesienie do CENA) |
-| Q22 | `cena` | `=IF(ISERROR($F$23/1),Q19,$F$23)` (odniesienie do CENA_KONCOWA) |
-| Q23 | `nazwa` | `=$D$8&" "&$D$6&" "&$F$21` (odniesienie do OPIS_POZYCJI) |
-| Q24 | `cena_info` | `=$F$22` (odniesienie do OPIS_CENY) |
-| Q25 | `rabat_info` | `=$F$23` (odniesienie do OPIS_RABATU) |
-
-### Konfiguracja klucza API
-
-Klucz OpenAI API należy umieścić w pliku `.env` w katalogu głównym konwertera:
-
-```
-OPENAI_API_KEY=sk-proj-...
-```
-
-Program szuka klucza w następującej kolejności:
-1. Plik `.env` (priorytet)
-2. Zmienna środowiskowa `OPENAI_API_KEY`
-
-Plik `.env` jest dodany do `.gitignore` i nie jest śledzony w repozytorium.
-
-### Uwagi dotyczące szablonów GPT
-
-- **Formuły w kolumnach N-W** mogą wymagać ręcznej korekty, szczególnie
-  formuły VLOOKUP w kolumnach S+ (mapowanie słownikowe)
-- **Kolumny X+ (słowniki)** nie są generowane automatycznie — jeśli produkt
-  wymaga mapowania słownikowego, tablice należy dodać ręcznie
-- **Model GPT**: domyślnie `gpt-4o-mini` (szybki, tani, wystarczający do
-  ustalenia kolejności parametrów)
-- **Brak dodatkowych zależności**: komunikacja z API odbywa się przez `urllib`
-  (biblioteka standardowa Pythona)
-
----
-
-## Użycie programu
-
-### 1. Przygotowanie szablonów (jednorazowo)
-
-```bash
-python3 converter.py setup
-```
-
-Skanuje istniejące pliki xlsx w katalogu `importyzefordoprod/` i wyodrębnia
-jeden szablon na typ produktu do katalogu `templates/`.
-
-### 2. Konwersja pojedynczego pliku JSON
-
-```bash
-python3 converter.py convert HKL_Maxsol_131.json
-```
-
-### 3. Konwersja wszystkich plików JSON
-
-```bash
-python3 converter.py convert-all
-```
-
-### 4. Lista dostępnych szablonów
-
-```bash
-python3 converter.py list-templates
-```
-
-### Katalogi
-
-| Katalog | Opis |
-|---------|------|
-| `templates/` | Szablony XLSX (jeden na typ produktu) |
-| `importyzefordoprod/` | Pliki wejściowe (JSON + przykłady XLSX) |
-| `output/` | Pliki wynikowe (wygenerowane XLSX) |
-
-### Konwencja nazewnictwa plików wynikowych
-
-```
-{nazwa_json}({timestamp})-{nr_sekwencyjny}({nr_w_typie_produktu}).xlsx
-```
-
-Przykład:
-```
-HKL_Maxsol_131(20260218_233702)-1(1).xlsx   ← pozycja 1, produkt 14 (1. w typie)
-HKL_Maxsol_131(20260218_233702)-2(2).xlsx   ← pozycja 2, produkt 14 (2. w typie)
-```
+W translatorze podpola są spłaszczane do formatu `KLUCZ.PODKLUCZ`.
 
 ---
 
 ## Ograniczenia i uwagi
 
-1. **Formuły Excela** — formuły są zachowywane w pliku XLSX, ale nie są
-   przeliczane przez program. Przeliczenie nastąpi automatycznie po otwarciu
-   pliku w Excelu.
+1. **Formuły Excela** — zachowywane w pliku XLSX, ale nie przeliczane przez program.
+   Przeliczenie nastąpi po otwarciu w Excelu.
 
-2. **Nowy typ produktu** — obsługiwany na dwa sposoby:
-   - **Automatycznie (GPT)**: jeśli skonfigurowany jest klucz API, szablon
-     zostanie wygenerowany przy pierwszej konwersji. Wymaga późniejszej
-     weryfikacji formuł i ewentualnego ręcznego dodania słowników (kolumny X+).
-   - **Ręcznie**: umieść przykładowy plik XLSX w `importyzefordoprod/`
-     i uruchom `python3 converter.py setup` — szablon zostanie wyodrębniony
-     ze wszystkimi formułami i słownikami.
+2. **Szablony GPT** — nie zawierają formuł VLOOKUP (kolumny S+) ani słowników (X+).
+   Te elementy należy uzupełnić ręcznie.
 
-3. **Szablony GPT vs. ręczne** — szablony wygenerowane przez GPT zawierają
-   poprawne formuły cenowe (kolumny N-Q), ale **nie mają**:
-   - Formuł VLOOKUP mapujących kody (kolumny S+)
-   - Tablic słownikowych (kolumny X+)
-   Te elementy należy uzupełnić ręcznie, jeśli są potrzebne.
+3. **Dane treningowe** — zawierają mieszane formaty wejściowe (EFOR/polski,
+   SRCID/zewnętrzne systemy, format niemiecki). Algorytm uczy się z dominującego
+   formatu. Dla asortymentów bez danych EFOR, translator korzysta z GPT fallback.
 
-4. **Weryfikacja danych** — po konwersji (zwłaszcza z szablonu GPT) zaleca się
-   otwarcie pliku w Excelu i sprawdzenie poprawności formuł.
-
-5. **Klucz API** — bez klucza OpenAI API w pliku `.env` lub zmiennej
-   środowiskowej, nieznane typy produktów będą pomijane (SKIP) jak poprzednio.
+4. **Klucz API** — bez klucza OpenAI API w `.env` lub zmiennej środowiskowej,
+   nieznane typy produktów/asortymentów będą pomijane.
 
 ---
 
@@ -440,7 +363,7 @@ HKL_Maxsol_131(20260218_233702)-2(2).xlsx   ← pozycja 2, produkt 14 (2. w typi
 
 - Python 3.6+
 - Biblioteka `openpyxl` (`pip3 install openpyxl`)
-- Klucz OpenAI API (opcjonalnie, dla automatycznego generowania szablonów)
+- Klucz OpenAI API (opcjonalnie, dla GPT fallback)
 
 ### Pliki konfiguracyjne
 
