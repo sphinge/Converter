@@ -179,10 +179,12 @@ mapowań automatycznie z danych treningowych dostarczonych przez Tomasza.
 ```
 Faza uczenia:
   10.xlsx → parsowanie par → nauka mapowań kluczy/wartości → zapis do mappings/*.json
+                                    ↓ (niezmapowane klucze)
+                              GPT sugestie → gpt_suggestions w mappings/*.json
 
 Faza tłumaczenia:
   JSON → ekstrakcja parametrów EFOR → dopasowanie ASORTMENT → zastosowanie mapowań → wynik.xlsx
-                                                            ↓ (jeśli nieznany)
+                                                            ↓ (jeśli nieznany)     ↑ (kolumny GPT = czerwone)
                                                       GPT fallback → sugestia mapowania
 ```
 
@@ -237,9 +239,33 @@ Każdy plik `mappings/{ASORTMENT}.json` zawiera:
   "constants": {
     "TRANS": "T",
     "KOLOR2": "-"
+  },
+  "gpt_suggestions": {
+    "MODEL": {"source": "SYSTEM_MODEL", "transform": "lookup", "value_map": {"S ctr2": "S ctr2"}, "description_pl": "Model rolety", "confidence": "medium"},
+    "STER": {"source": "manual", "transform": "manual", "description_pl": "Rodzaj sterowania", "confidence": "low"}
   }
 }
 ```
+
+### Sugestie GPT dla niezmapowanych kluczy
+
+Podczas fazy uczenia (`learn`) niektóre klucze wyjściowe PROD nie mogą zostać
+automatycznie dopasowane do żadnego klucza wejściowego EFOR (wynik dopasowania = 0).
+Przykłady: KOMPONENTDE (konkatenacja), MODEL (obcięty), STER (tłumaczenie na niemiecki),
+SYST_KOLOR (podciąg), TUBA/CS (zależne od źródła).
+
+Dla takich kluczy program wysyła zapytanie do GPT, które:
+1. Szuka podobnego już zmapowanego klucza PROD i proponuje analogiczne mapowanie
+2. Jeśli brak podobnego klucza — tworzy opis w języku polskim
+3. Zapisuje sugestię w pliku mapowania JSON w polu `gpt_suggestions`
+
+Każda sugestia GPT zawiera:
+- `source` — proponowany klucz źródłowy EFOR (lub `"manual"` jeśli brak dopasowania)
+- `transform` — typ transformacji (`copy`, `divide10`, `lookup`, `manual`)
+- `description_pl` — opis parametru po polsku
+- `confidence` — poziom pewności (`high`, `medium`, `low`)
+- `reason` — uzasadnienie wyboru (po angielsku)
+- `value_map` — opcjonalny słownik mapowania wartości (dla transformacji `lookup`)
 
 ### Plik wynikowy (wynik.xlsx)
 
@@ -247,6 +273,9 @@ Każdy plik `mappings/{ASORTMENT}.json` zawiera:
 - Wiersz 2+: przetłumaczone wartości (jeden wiersz na pozycję z JSON)
 - Puste wartości / NULL → "-"
 - Wartości liczbowe zachowują typ numeryczny
+- **Kolumny z sugestiami GPT** są podświetlone na **czerwono** (nagłówek + dane)
+  w celu łatwej identyfikacji i ręcznej weryfikacji
+- Klucze z transformacją `manual` mają wartość `"?"` jako placeholder do uzupełnienia
 
 ---
 
@@ -355,7 +384,12 @@ W translatorze podpola są spłaszczane do formatu `KLUCZ.PODKLUCZ`.
    formatu. Dla asortymentów bez danych EFOR, translator korzysta z GPT fallback.
 
 4. **Klucz API** — bez klucza OpenAI API w `.env` lub zmiennej środowiskowej,
-   nieznane typy produktów/asortymentów będą pomijane.
+   nieznane typy produktów/asortymentów będą pomijane, a sugestie GPT dla
+   niezmapowanych kluczy nie zostaną wygenerowane.
+
+5. **Sugestie GPT** — kolumny oznaczone czerwonym tłem w pliku wynikowym wymagają
+   ręcznej weryfikacji. Wartości `"?"` oznaczają klucze, dla których GPT nie znalazł
+   źródła danych i wymagają ręcznego uzupełnienia.
 
 ---
 

@@ -27,9 +27,12 @@ from datetime import datetime
 
 try:
     import openpyxl
+    from openpyxl.styles import PatternFill
 except ImportError:
     print("openpyxl is required. Install with: pip3 install openpyxl")
     sys.exit(1)
+
+GPT_REVIEW_FILL = PatternFill(start_color="FF9999", end_color="FF9999", fill_type="solid")
 
 
 # ── Configuration ──────────────────────────────────────────────────────────────
@@ -522,7 +525,22 @@ def learn_key_mapping(pairs):
             if best_transform == 'lookup' and best_lookup:
                 value_map[out_key] = best_lookup
 
-    return {"key_map": key_map, "value_map": value_map, "constants": constants}
+    # Collect unmapped output keys (not in key_map or constants)
+    unmapped = {}
+    for out_key in output_key_order:
+        if out_key not in key_map and out_key not in constants:
+            sample_values = all_output_keys[out_key][:5]
+            sample_inputs = []
+            for inp, out in pairs[:5]:
+                if out_key in out:
+                    sample_inputs.append(inp)
+            unmapped[out_key] = {
+                "sample_values": sample_values,
+                "sample_inputs": sample_inputs,
+            }
+
+    return {"key_map": key_map, "value_map": value_map, "constants": constants,
+            "unmapped": unmapped}
 
 
 def save_mapping(asortment, mapping):
@@ -577,12 +595,14 @@ def translate_params(efor_params, mapping):
       - Find source value in efor_params
       - Apply transform: copy, divide10, or lookup in value_map
       - Handle NULL/empty → '-'
-    Returns: {"PROD_KEY": "value", ...}
+    Returns: ({"PROD_KEY": "value", ...}, set_of_gpt_suggested_keys)
     """
     result = {}
+    gpt_keys = set()
     key_map = mapping.get('key_map', {})
     value_map = mapping.get('value_map', {})
     constants = mapping.get('constants', {})
+    gpt_suggestions = mapping.get('gpt_suggestions', {})
 
     # Add constants first
     for prod_key, val in constants.items():
@@ -627,7 +647,49 @@ def translate_params(efor_params, mapping):
         else:
             result[prod_key] = raw_str
 
-    return result
+    # Apply GPT suggestions
+    for prod_key, info in gpt_suggestions.items():
+        gpt_keys.add(prod_key)
+        source_key = info.get('source', 'manual')
+        transform = info.get('transform', 'manual')
+
+        if transform == 'manual' or source_key == 'manual':
+            result[prod_key] = '?'
+            continue
+
+        # Find value in efor_params
+        raw_val = efor_params.get(source_key)
+        if raw_val is None:
+            for k, v in efor_params.items():
+                if k.lower() == source_key.lower():
+                    raw_val = v
+                    break
+
+        if raw_val is None or str(raw_val).strip() in ('', '<NULL>', '<NONE>', 'None'):
+            result[prod_key] = '-'
+            continue
+
+        raw_str = str(raw_val).strip()
+
+        if transform == 'copy':
+            result[prod_key] = raw_val if not isinstance(raw_val, str) else raw_str
+        elif transform == 'divide10':
+            try:
+                num = float(raw_str)
+                divided = num / 10.0
+                if divided == int(divided):
+                    result[prod_key] = int(divided)
+                else:
+                    result[prod_key] = round(divided, 2)
+            except (ValueError, TypeError):
+                result[prod_key] = raw_str
+        elif transform == 'lookup':
+            lut = info.get('value_map', {})
+            result[prod_key] = lut.get(raw_str, raw_str)
+        else:
+            result[prod_key] = raw_str
+
+    return result, gpt_keys
 
 
 def match_asortment(department, product_description=None):
@@ -727,6 +789,7 @@ def translate_json(json_path, output_path=None):
 
     headers_written = False
     current_row = 2  # row 1 for headers
+    all_gpt_columns = set()
 
     for seq, item in enumerate(items, 1):
         department = item.get('department', '')
@@ -747,7 +810,7 @@ def translate_json(json_path, output_path=None):
                 continue
 
         efor_params = extract_flat_params(item)
-        prod_params = translate_params(efor_params, mapping)
+        prod_params, gpt_keys = translate_params(efor_params, mapping)
 
         if not prod_params:
             print(f"    SKIP: translation produced no output parameters.")
@@ -757,6 +820,8 @@ def translate_json(json_path, output_path=None):
         if not headers_written:
             for col_idx, key in enumerate(prod_params.keys(), 1):
                 ws.cell(row=1, column=col_idx, value=key)
+                if key in gpt_keys:
+                    all_gpt_columns.add(col_idx)
             headers_written = True
 
         # Write data row
@@ -772,9 +837,25 @@ def translate_json(json_path, output_path=None):
                 new_col = ws.max_column + 1
                 ws.cell(row=1, column=new_col, value=key)
                 ws.cell(row=current_row, column=new_col, value=prod_params[key])
+                if key in gpt_keys:
+                    all_gpt_columns.add(new_col)
 
         current_row += 1
-        print(f"    -> {len(prod_params)} PROD parameters")
+        n_gpt = len(gpt_keys & set(prod_params.keys()))
+        n_total = len(prod_params)
+        if n_gpt:
+            print(f"    -> {n_total} PROD parameters ({n_gpt} GPT-suggested, marked RED)")
+        else:
+            print(f"    -> {n_total} PROD parameters")
+
+    # Apply red highlighting to GPT-suggested columns
+    if all_gpt_columns:
+        for col_idx in all_gpt_columns:
+            # Header cell
+            ws.cell(row=1, column=col_idx).fill = GPT_REVIEW_FILL
+            # Data cells
+            for r in range(2, current_row):
+                ws.cell(row=r, column=col_idx).fill = GPT_REVIEW_FILL
 
     wb.save(output_path)
     wb.close()
@@ -830,6 +911,100 @@ def gpt_translate_fallback(efor_params, asortment):
         return result
 
     return None
+
+
+def gpt_suggest_unmapped(unmapped_info, existing_key_map, existing_constants, asortment):
+    """Ask GPT to suggest mappings for unmapped PROD keys.
+
+    Args:
+        unmapped_info: dict of {PROD_KEY: {"sample_values": [...], "sample_inputs": [...]}}
+        existing_key_map: already-mapped key_map dict
+        existing_constants: already-mapped constants dict
+        asortment: product type name
+
+    Returns: {"PROD_KEY": {"source": ..., "transform": ..., "description_pl": ..., "confidence": ..., "reason": ...}, ...}
+    """
+    if not unmapped_info:
+        return {}
+
+    api_key = get_api_key()
+    if not api_key:
+        print("    No API key for GPT suggestions (set OPENAI_API_KEY in .env)")
+        return {}
+
+    # Build context about already-mapped keys
+    mapped_summary = []
+    for prod_key, info in existing_key_map.items():
+        mapped_summary.append(f"  {prod_key} <- {info['source']} ({info.get('transform', 'copy')})")
+    mapped_text = "\n".join(mapped_summary[:30]) if mapped_summary else "  (none)"
+
+    const_summary = []
+    for prod_key, val in existing_constants.items():
+        const_summary.append(f"  {prod_key} = {val}")
+    const_text = "\n".join(const_summary[:20]) if const_summary else "  (none)"
+
+    # Build unmapped keys info
+    unmapped_items = []
+    for prod_key, info in unmapped_info.items():
+        samples = info.get("sample_values", [])
+        inp_keys = set()
+        for inp_dict in info.get("sample_inputs", []):
+            inp_keys.update(inp_dict.keys())
+        inp_sample = {}
+        if info.get("sample_inputs"):
+            inp_sample = info["sample_inputs"][0]
+        unmapped_items.append(
+            f"  PROD key: {prod_key}\n"
+            f"    Sample output values: {samples}\n"
+            f"    Available input keys: {sorted(inp_keys)[:20]}\n"
+            f"    Sample input row: {dict(list(inp_sample.items())[:10])}"
+        )
+    unmapped_text = "\n".join(unmapped_items)
+
+    prompt = (
+        f"You are helping map EFOR (input) parameters to PROD (output) parameters "
+        f"for product type: {asortment}.\n\n"
+        f"Already-mapped PROD keys (PROD <- EFOR source):\n{mapped_text}\n\n"
+        f"Constants:\n{const_text}\n\n"
+        f"The following PROD output keys could NOT be automatically matched to any "
+        f"EFOR input key. For each one, analyze the key name and sample values to "
+        f"suggest the best mapping.\n\n"
+        f"Unmapped keys:\n{unmapped_text}\n\n"
+        f"For each unmapped PROD key, return a JSON object with:\n"
+        f'- "source": the EFOR input key name to map from (or "manual" if no match)\n'
+        f'- "transform": "copy", "divide10", "lookup", or "manual"\n'
+        f'- "description_pl": brief description in POLISH of what this parameter is\n'
+        f'- "confidence": "high", "medium", or "low"\n'
+        f'- "reason": brief English explanation of why you chose this mapping\n'
+        f'- "value_map": optional dict mapping input values to output values (for lookup transform)\n\n'
+        f"Guidelines:\n"
+        f"- If an unmapped PROD key name is similar to an already-mapped key, name it similarly\n"
+        f"- KOMPONENTDE might be a concatenation of component fields\n"
+        f"- MODEL might be a truncated version of a system model field\n"
+        f"- Keys ending in DE/EN might be German/English translations\n"
+        f"- SYST_ prefix usually refers to system-level parameters\n"
+        f"- If no reasonable match, use source='manual' and transform='manual'\n\n"
+        f"Return ONLY a valid JSON object where keys are the PROD key names."
+    )
+
+    result = call_gpt_api(prompt, api_key)
+    if result and isinstance(result, dict):
+        # Validate structure
+        clean = {}
+        for prod_key, suggestion in result.items():
+            if isinstance(suggestion, dict) and 'source' in suggestion:
+                clean[prod_key] = {
+                    "source": suggestion.get("source", "manual"),
+                    "transform": suggestion.get("transform", "manual"),
+                    "description_pl": suggestion.get("description_pl", ""),
+                    "confidence": suggestion.get("confidence", "low"),
+                    "reason": suggestion.get("reason", ""),
+                }
+                if suggestion.get("value_map"):
+                    clean[prod_key]["value_map"] = suggestion["value_map"]
+        return clean
+
+    return {}
 
 
 # ── Template setup ─────────────────────────────────────────────────────────────
@@ -1152,10 +1327,27 @@ Directories:
         for asort, pairs in sorted(groups.items()):
             print(f"  Learning: {asort} ({len(pairs)} examples)...", end=" ")
             mapping = learn_key_mapping(pairs)
-            path = save_mapping(asort, mapping)
             n_keys = len(mapping['key_map'])
             n_const = len(mapping['constants'])
-            print(f"-> {n_keys} key mappings, {n_const} constants")
+            unmapped = mapping.pop('unmapped', {})
+            n_unmapped = len(unmapped)
+            print(f"-> {n_keys} key mappings, {n_const} constants, {n_unmapped} unmapped")
+
+            if unmapped:
+                print(f"    Unmapped keys: {', '.join(unmapped.keys())}")
+                print(f"    Asking GPT for suggestions...", end=" ")
+                suggestions = gpt_suggest_unmapped(
+                    unmapped, mapping['key_map'], mapping['constants'], asort)
+                if suggestions:
+                    mapping['gpt_suggestions'] = suggestions
+                    print(f"-> {len(suggestions)} GPT suggestions")
+                    for pk, info in suggestions.items():
+                        print(f"      {pk}: {info.get('source')} ({info.get('transform')}) "
+                              f"[{info.get('confidence')}] - {info.get('description_pl', '')}")
+                else:
+                    print("-> no suggestions returned")
+
+            save_mapping(asort, mapping)
 
         print(f"\nDone. Mappings saved to {MAPPINGS_DIR}/")
 
@@ -1201,9 +1393,11 @@ Directories:
                 n_keys = len(data.get('key_map', {}))
                 n_vals = len(data.get('value_map', {}))
                 n_const = len(data.get('constants', {}))
+                n_gpt = len(data.get('gpt_suggestions', {}))
                 print(f"  {asort}")
                 print(f"    File: {fname}")
-                print(f"    Keys: {n_keys} mappings, {n_vals} value lookups, {n_const} constants")
+                print(f"    Keys: {n_keys} mappings, {n_vals} value lookups, "
+                      f"{n_const} constants, {n_gpt} GPT-suggested")
                 # Show key map summary
                 km = data.get('key_map', {})
                 transforms = {}
@@ -1213,6 +1407,14 @@ Directories:
                 if transforms:
                     parts = [f"{v}x {k}" for k, v in sorted(transforms.items())]
                     print(f"    Transforms: {', '.join(parts)}")
+                # Show GPT suggestions summary
+                gpt = data.get('gpt_suggestions', {})
+                if gpt:
+                    gpt_parts = []
+                    for pk, info in gpt.items():
+                        conf = info.get('confidence', '?')
+                        gpt_parts.append(f"{pk} [{conf}]")
+                    print(f"    GPT suggestions: {', '.join(gpt_parts)}")
                 print()
 
     else:
