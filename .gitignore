@@ -2,3 +2,9 @@
 output/
 __pycache__/
 .claude/
+10/
+templates/
+mappings/
+*.xlsx
+*.json
+!package.json
